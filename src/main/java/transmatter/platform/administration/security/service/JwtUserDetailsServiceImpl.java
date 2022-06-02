@@ -7,7 +7,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import transmatter.platform.administration.security.entity.User;
 import transmatter.platform.administration.security.repository.UserRepository;
-import transmatter.platform.administration.util.JwtUserFactory;
+import transmatter.platform.administration.utils.JwtUserFactory;
 
 /**
  * Created by stephan on 20.03.16.
