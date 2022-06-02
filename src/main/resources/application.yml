@@ -1,0 +1,52 @@
+spring:
+  application:
+    name: "Transmatter Platform Administration Subsystem"
+  profiles:
+    active:
+      - db
+  datasource:
+    url: jdbc:mysql://localhost:3306/trysecurity?createDatabaseIfNotExist=true&autoReconnect=true&characterEncoding=UTF-8&allowMultiQueries=true&useSSL=false&useUnicode=true&characterEncoding=UTF-8
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: root
+    password: 1590
+  jpa:
+    hibernate:
+      ddl-auto: create
+  servlet:
+    multipart:
+      max-file-size: 10MB
+  mail:
+    username: transmatter.team@outlook.com
+    password: Tmat@1739
+    host: smtp-mail.outlook.com
+    protocol: smtp
+    properties:
+      mail:
+        smtp:
+          starttls:
+            enable: true
+          ssl:
+            trust: smtp-mail.outlook.com
+          auth: false
+  data:
+    mongodb:
+      host: "localhost"
+      port: 27017
+      database: "Contents01"
+jwt:
+  header: Authorization
+  secret: mySecret
+  expiration: 604800
+  route:
+    authentication:
+      path: auth
+      refresh: refresh
+    register:
+      path: registers
+      refresh: refresh
+graphql:
+  servlet:
+    enabled: true
+    mapping: /graphql
+    corsEnabled: false
+
