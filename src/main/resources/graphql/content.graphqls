@@ -1,0 +1,26 @@
+type News {
+    id : String
+    source : String
+    author : String
+    public_date : String
+    title : String
+    content : String
+    images : [Image]
+    comment : [Comment]
+}
+
+type Comment {
+    author: String
+    content: String
+    time: String
+    image_urls : [String]
+}
+
+type Image {
+    url : String
+    alt : String
+}
+
+input ImageText {
+    alt : String
+}

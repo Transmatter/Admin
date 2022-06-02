@@ -1,6 +1,6 @@
-package transmatter.sandbox.content.news.dao;
+package transmatter.platform.administration.news.dao;
 
-import transmatter.sandbox.content.news.entity.News;
+import transmatter.platform.administration.news.entity.News;
 
 import java.util.List;
 

@@ -1,15 +1,15 @@
-package transmatter.sandbox.content.news.resolver;
+package transmatter.platform.administration.news.resolver;
 
 import graphql.kickstart.tools.GraphQLMutationResolver;
 import graphql.kickstart.tools.GraphQLQueryResolver;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
-import transmatter.sandbox.content.news.dto.NewsDto;
-import transmatter.sandbox.content.news.entity.Image;
-import transmatter.sandbox.content.news.entity.News;
-import transmatter.sandbox.content.news.service.NewsService;
-import transmatter.sandbox.content.utils.TransmatterMapper;
+import transmatter.platform.administration.news.dto.NewsDto;
+import transmatter.platform.administration.news.entity.Image;
+import transmatter.platform.administration.news.entity.News;
+import transmatter.platform.administration.news.service.NewsService;
+import transmatter.platform.administration.utils.TransmatterMapper;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,7 +1,7 @@
-package transmatter.sandbox.content.news.repository;
+package transmatter.platform.administration.news.repository;
 
 import org.springframework.data.mongodb.repository.MongoRepository;
-import transmatter.sandbox.content.news.entity.News;
+import transmatter.platform.administration.news.entity.News;
 
 public interface NewsRepository extends MongoRepository<News,String> {
 }

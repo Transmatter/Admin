@@ -1,10 +1,10 @@
-package transmatter.sandbox.content.news.service;
+package transmatter.platform.administration.news.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import transmatter.sandbox.content.news.dao.NewsDao;
-import transmatter.sandbox.content.news.entity.Image;
-import transmatter.sandbox.content.news.entity.News;
+import transmatter.platform.administration.news.dao.NewsDao;
+import transmatter.platform.administration.news.entity.Image;
+import transmatter.platform.administration.news.entity.News;
 
 import java.util.ArrayList;
 import java.util.List;

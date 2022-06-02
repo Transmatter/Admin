@@ -1,7 +1,7 @@
-package transmatter.sandbox.content.news.service;
+package transmatter.platform.administration.news.service;
 
-import transmatter.sandbox.content.news.entity.Image;
-import transmatter.sandbox.content.news.entity.News;
+import transmatter.platform.administration.news.entity.Image;
+import transmatter.platform.administration.news.entity.News;
 
 import java.util.List;
 
