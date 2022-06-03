@@ -35,11 +35,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .passwordEncoder(password.passwordEncoder());
     }
 
-//    @Bean
-//    public PasswordEncoder passwordEncoder() {
-//        return new BCryptPasswordEncoder();
-//    }
-
     @Bean
     public JwtAuthenticationTokenFilter authenticationTokenFilterBean() throws Exception {
         return new JwtAuthenticationTokenFilter();
@@ -59,7 +54,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .exceptionHandling().authenticationEntryPoint(unauthorizedHandler).and()
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
                 .authorizeRequests()
-                .antMatchers("/auth/**","/registers",  "/refresh","/send-email").permitAll()
+                .antMatchers("/auth/**","/registers",  "/refresh","/send-email","/graphql").permitAll()
                 .antMatchers(HttpMethod.OPTIONS, "/**").permitAll()
 
                 .anyRequest().authenticated();
