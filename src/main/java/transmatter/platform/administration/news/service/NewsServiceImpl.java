@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 import transmatter.platform.administration.news.dao.NewsDao;
 import transmatter.platform.administration.news.entity.Image;
 import transmatter.platform.administration.news.entity.News;
+import transmatter.platform.administration.news.exception.NewsNotFoundException;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,7 +17,9 @@ public class NewsServiceImpl implements NewsService {
 
     @Override
     public News getContent(String id) {
-        return newsDao.getContent(id);
+        News news = newsDao.getContent(id);
+        if(news == null) throw new NewsNotFoundException(id);
+        return news;
     }
 
     @Override
