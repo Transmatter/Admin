@@ -1,0 +1,15 @@
+schema {
+    query: Query
+    mutation: Mutation
+}
+
+type Query {
+    getContent(id:String): News
+    getAllContents: [News]
+    getAllEmptyAltNews: [News]
+}
+
+type Mutation {
+    deleteContent(id:String): News
+    updateImageContent(id:String,imageText:[ImageText]) : News
+}
