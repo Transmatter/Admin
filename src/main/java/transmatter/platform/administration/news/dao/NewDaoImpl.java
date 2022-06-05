@@ -1,6 +1,7 @@
 package transmatter.platform.administration.news.dao;
 
 
+import com.mysema.query.types.expr.BooleanExpression;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import transmatter.platform.administration.news.entity.News;
@@ -31,5 +32,15 @@ public class NewDaoImpl implements NewsDao {
     @Override
     public News updateContent(News news) {
         return newsRepository.save(news);
+    }
+
+    @Override
+    public List<News> searchContent(String title) {
+        return newsRepository.findByTitleContaining(title);
+    }
+
+    @Override
+    public List<News> getBySource(String source) {
+        return newsRepository.findBySource(source);
     }
 }

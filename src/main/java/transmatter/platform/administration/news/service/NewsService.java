@@ -11,5 +11,7 @@ public interface NewsService {
     News deleteContent(String id);
     List<News> getAllEmptyAltNews();
     News updateImageContent(String id,List<Image> ImageText);
+    List<News> searchNews(String title);
+    List<News> getNewsBySource(String source);
 }
 

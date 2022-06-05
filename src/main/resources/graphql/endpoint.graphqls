@@ -8,6 +8,8 @@ type Query {
     getContent(id:String): News
     getAllContents: [News]
     getAllEmptyAltNews: [News]
+    getNewsBySource(source:String): [News]
+    searchNews(title:String) : [News]
 
     # user feature
     getUserByID(id:Int) : UserDto

@@ -1,5 +1,6 @@
 package transmatter.platform.administration.news.entity;
 
+import com.mysema.query.annotations.QueryEntity;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -14,6 +15,7 @@ import java.util.ArrayList;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
+@QueryEntity
 @Document
 public class News {
     @Id
