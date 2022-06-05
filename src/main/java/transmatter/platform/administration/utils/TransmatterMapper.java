@@ -19,6 +19,7 @@ public interface TransmatterMapper {
     NewsDto getNewsDto(News news);
     List<NewsDto> getNewsDto(List<News> news);
 
+    @Mapping(target = "status",expression = "java( user.getStatus().toString())")
     UserDto getUserDto(User user);
     List<UserDto> getUserDto(List<User> user);
 
