@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import transmatter.platform.administration.security.entity.VerifyStatus;
 
 import java.util.List;
 
@@ -14,5 +15,6 @@ import java.util.List;
 public class UserAuthDto {
     Long id;
     String username;
+    VerifyStatus status;
     List<String> authorities;
 }

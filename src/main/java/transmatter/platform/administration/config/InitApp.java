@@ -9,6 +9,7 @@ import org.springframework.stereotype.Component;
 import transmatter.platform.administration.security.entity.Authority;
 import transmatter.platform.administration.security.entity.AuthorityName;
 import transmatter.platform.administration.security.entity.User;
+import transmatter.platform.administration.security.entity.VerifyStatus;
 import transmatter.platform.administration.security.repository.AuthorityRepository;
 import transmatter.platform.administration.security.repository.UserRepository;
 
@@ -58,6 +59,7 @@ public class InitApp implements ApplicationListener<ApplicationReadyEvent>  {
                         .username("tmat111")
                         .phoneNo("0987654321")
                         .enabled(true)
+                        .status(VerifyStatus.VERIFIED)
                         .lastPasswordResetDate(Date.from(LocalDate.of(2021, 01, 01).atStartOfDay(ZoneId.systemDefault()).toInstant()))
                         .build()
         );

@@ -64,6 +64,9 @@ public class User {
     @ManyToMany(fetch = FetchType.EAGER)
     private List<Authority> authorities = new ArrayList<>();
 
+    @Builder.Default
+    private VerifyStatus status = VerifyStatus.NOT_VERIFIED;
+
     @Column(name = "imageProfile", length = 255)
     String imageProfile;
 

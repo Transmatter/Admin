@@ -1,5 +1,6 @@
 package transmatter.platform.administration.security.service;
 
+import lombok.SneakyThrows;
 import transmatter.platform.administration.security.controller.JwtAuthenticationRequest;
 import transmatter.platform.administration.security.dao.UserDao;
 import transmatter.platform.administration.security.entity.*;
@@ -8,7 +9,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import transmatter.platform.administration.utils.SimpleUtils;
 
+import java.lang.reflect.InvocationTargetException;
 import java.util.List;
 
 @Service
@@ -30,16 +33,10 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User updateUser(Long userID, JwtAuthenticationRequest authenticationRequest) {
-        PasswordEncoder encoder = new BCryptPasswordEncoder();
+    @SneakyThrows
+    public User updateUser(Long userID, User authenticationRequest) {
         User user = userDao.getUser(userID);
-
-        user.setEmail(authenticationRequest.getEmail());
-        user.setImageProfile(authenticationRequest.getImageProfile());
-        user.setPassword(encoder.encode(authenticationRequest.getPassword()));
-        user.setFirstname(authenticationRequest.getFirstname());
-        user.setLastname(authenticationRequest.getLastname());
-        user.setPhoneNo(authenticationRequest.getPhoneNo());
+        SimpleUtils.clone(authenticationRequest,user,"password","status");
         return userDao.updateUser(user);
     }
 
@@ -73,19 +70,18 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public User verifyUser(String status, Long id) {
+        VerifyStatus stat = VerifyStatus.NA;
+        if(status.equals("VERIFIED")) stat = VerifyStatus.VERIFIED;
+        if(status.equals("NOT_VERIFIED")) stat = VerifyStatus.NOT_VERIFIED;
+        User user = userDao.getUser(id);
+        user.setStatus(stat);
+        return userDao.updateUser(user);
+    }
+
+    @Override
     public Boolean userValidation(JwtAuthenticationRequest authenticationRequest){
         List<User> users = userDao.getAllUser();
-        // in case user want to update their data might reconsider to do this again.
-//        if(authenticationRequest.getPersonalID().length() == 0){
-//            for(User u : users){
-//                if(u.getEmail().equals(authenticationRequest.getEmail())){
-//                    return false;
-//                }
-//            }
-//            return true;
-//        }
-
-        //in case user want to change their username and password
         if(authenticationRequest.getEmail() == null){
             for(User u : users){
                 if(u.getUsername().equals(authenticationRequest.getUsername())){

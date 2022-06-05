@@ -2,7 +2,6 @@ package transmatter.platform.administration.security.controller;
 
 import transmatter.platform.administration.security.entity.User;
 import transmatter.platform.administration.security.repository.AuthorityRepository;
-import transmatter.platform.administration.security.repository.UserRepository;
 import transmatter.platform.administration.security.service.UserService;
 import transmatter.platform.administration.utils.JwtTokenUtil;
 import transmatter.platform.administration.utils.TransmatterMapper;
@@ -46,9 +45,6 @@ public class AuthenticationRestController {
     UserService userService;
 
     @Autowired
-    UserRepository userRepository;
-
-    @Autowired
     AuthorityRepository authorityRepository;
 
     @PostMapping("${jwt.route.authentication.path}")
@@ -67,7 +63,7 @@ public class AuthenticationRestController {
         final String token = jwtTokenUtil.generateToken(userDetails, device);
         Map result = new HashMap();
         result.put("token", token);
-        User user = userRepository.findByUsername(userDetails.getUsername());
+        User user = userService.getUserByUsername(userDetails.getUsername());
         if (user != null) {
             result.put("user", TransmatterMapper.INSTANCE.getUserAuthDto( user ));
         }
@@ -102,7 +98,6 @@ public class AuthenticationRestController {
             user = userService.addUser(authenticationRequest);
             return ResponseEntity.ok(TransmatterMapper.INSTANCE.getUserDto(user));
         }
-
     }
 
 }
