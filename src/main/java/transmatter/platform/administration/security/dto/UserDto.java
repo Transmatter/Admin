@@ -17,4 +17,5 @@ public class UserDto {
     String lastname;
     String imageProfile;
     String phoneNo;
+    String status;
 }

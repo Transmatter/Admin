@@ -1,0 +1,19 @@
+type UserDto {
+    id: Int
+    username: String
+    email: String
+    firstname: String
+    lastname: String
+    imageProfile: String
+    phoneNo: String
+    status : String
+}
+
+input UserInput {
+    username: String
+    email: String
+    firstname: String
+    lastname: String
+    imageProfile: String
+    phoneNo: String
+}
