@@ -56,4 +56,14 @@ public class NewsServiceImpl implements NewsService {
         }
         return newsDao.updateContent(news);
     }
+
+    @Override
+    public List<News> searchNews(String title) {
+        return newsDao.searchContent(title);
+    }
+
+    @Override
+    public List<News> getNewsBySource(String source) {
+        return newsDao.getBySource(source);
+    }
 }

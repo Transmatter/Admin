@@ -34,11 +34,22 @@ public class NewsResolver implements GraphQLQueryResolver, GraphQLMutationResolv
         return newsService.deleteContent(id);
     }
 
+    @Transactional
     List<News> getAllEmptyAltNews() {
         return newsService.getAllEmptyAltNews();
     }
 
+    @Transactional
     News updateImageContent(String id,List<Image> imageText){
         return newsService.updateImageContent(id,imageText);
+    }
+
+    @Transactional
+    List<News> getNewsBySource(String source) {
+        return newsService.getNewsBySource(source);
+    }
+
+    List<News> searchNews(String title) {
+        return newsService.searchNews(title);
     }
 }
