@@ -34,8 +34,8 @@ spring:
 #      port: 27017
 #      database: "Contents01"
     mongodb:
-      uri: mongodb+srv://oat431:Saha+6462@sahadb.vetfj.mongodb.net
-      database: mock_remote_content
+      uri: mongodb+srv://oat:JustOat5039@cluster0.wj65o.mongodb.net
+      database: mock_remote_data
 jwt:
   header: Authorization
   secret: mySecret
