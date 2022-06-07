@@ -1,0 +1,26 @@
+schema {
+    query: Query
+    mutation: Mutation
+}
+
+type Query {
+    # news feature
+    getContent(id:String): News
+    getAllContents: [News]
+    getAllEmptyAltNews: [News]
+    getNewsBySource(source:String): [News]
+    searchNews(title:String) : [News]
+
+    # user feature
+    getUserByID(id:Int) : UserDto
+}
+
+type Mutation {
+    # news feature
+    deleteContent(id:String): News
+    updateImageContent(id:String,imageText:[ImageText]) : News
+
+    # user feature
+    updateUser(id:Int,user:UserInput) : UserDto
+    verifyUser(id:Int,status:String) : UserDto
+}

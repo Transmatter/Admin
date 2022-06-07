@@ -29,10 +29,13 @@ spring:
             trust: smtp-mail.outlook.com
           auth: false
   data:
+#    mongodb:
+#      host: "localhost"
+#      port: 27017
+#      database: "Contents01"
     mongodb:
-      host: "localhost"
-      port: 27017
-      database: "Contents01"
+      uri: mongodb+srv://oat:JustOat5039@cluster0.wj65o.mongodb.net
+      database: mock_remote_data
 jwt:
   header: Authorization
   secret: mySecret
