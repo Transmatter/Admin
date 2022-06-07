@@ -18,7 +18,7 @@ public class AdministrationApplication {
             @Override
             public void addCorsMappings(CorsRegistry registry){
                 registry.addMapping("/**")
-                        .allowedOrigins("http://localhost:3000")
+                        .allowedOrigins("http://localhost:3000","http://localhost:3300","http://localhost:5500")
                         .exposedHeaders("x-total-count");
             }
         };
