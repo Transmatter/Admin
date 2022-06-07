@@ -3,6 +3,8 @@ package transmatter.platform.administration.news.dao;
 
 import com.mysema.query.types.expr.BooleanExpression;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Repository;
 import transmatter.platform.administration.news.entity.News;
 import transmatter.platform.administration.news.repository.NewsRepository;
@@ -20,7 +22,12 @@ public class NewDaoImpl implements NewsDao {
     }
 
     @Override
-    public List<News> getAllContents() {
+    public Page<News> getAllContents(PageRequest pageRequest) {
+        return newsRepository.findAll(pageRequest);
+    }
+
+    @Override
+    public List<News> getAllContents(){
         return newsRepository.findAll();
     }
 
@@ -35,12 +42,12 @@ public class NewDaoImpl implements NewsDao {
     }
 
     @Override
-    public List<News> searchContent(String title) {
-        return newsRepository.findByTitleContaining(title);
+    public Page<News> searchContent(String title, PageRequest page) {
+        return newsRepository.findByTitleContaining(title,page);
     }
 
     @Override
-    public List<News> getBySource(String source) {
-        return newsRepository.findBySource(source);
+    public Page<News> getBySource(String source,PageRequest page) {
+        return newsRepository.findBySource(source,page);
     }
 }

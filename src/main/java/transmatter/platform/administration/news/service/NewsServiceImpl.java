@@ -1,6 +1,8 @@
 package transmatter.platform.administration.news.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import transmatter.platform.administration.news.dao.NewsDao;
 import transmatter.platform.administration.news.entity.Image;
@@ -23,7 +25,12 @@ public class NewsServiceImpl implements NewsService {
     }
 
     @Override
-    public List<News> getAllContents() {
+    public Page<News> getAllContents(PageRequest page) {
+        return newsDao.getAllContents(page);
+    }
+
+    @Override
+    public List<News> getAllContents(){
         return newsDao.getAllContents();
     }
 
@@ -58,12 +65,12 @@ public class NewsServiceImpl implements NewsService {
     }
 
     @Override
-    public List<News> searchNews(String title) {
-        return newsDao.searchContent(title);
+    public Page<News> searchNews(String title,PageRequest page) {
+        return newsDao.searchContent(title,page);
     }
 
     @Override
-    public List<News> getNewsBySource(String source) {
-        return newsDao.getBySource(source);
+    public Page<News> getNewsBySource(String source, PageRequest page) {
+        return newsDao.getBySource(source,page);
     }
 }

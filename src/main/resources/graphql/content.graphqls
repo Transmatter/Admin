@@ -5,8 +5,16 @@ type News {
     public_date : String
     title : String
     content : String
+    type : String
     images : [Image]
     comment : [Comment]
+}
+
+type PageNews {
+    number : Int,
+    totalPages : Int,
+    totalElements : Int,
+    content : [News]
 }
 
 type Comment {
