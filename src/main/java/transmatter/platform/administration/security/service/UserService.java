@@ -8,6 +8,7 @@ import java.lang.reflect.InvocationTargetException;
 import java.util.List;
 
 public interface UserService {
+    List<User> getUnVerifyAdmin();
     List<User> getAllUser();
     User getUser(Long userID);
     User updateUser(Long userID,User user) throws InvocationTargetException, IllegalAccessException, NoSuchMethodException, InstantiationException;

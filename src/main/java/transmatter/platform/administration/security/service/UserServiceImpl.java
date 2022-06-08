@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import transmatter.platform.administration.utils.SimpleUtils;
 
 import java.lang.reflect.InvocationTargetException;
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -21,6 +22,18 @@ public class UserServiceImpl implements UserService {
 
     @Autowired
     AuthorityRepository authorityRepository;
+
+    @Override
+    public List<User> getUnVerifyAdmin() {
+        List<User> users = userDao.getAllUser();
+        List<User> unVerifyUser = new ArrayList<>();
+        for(User user : users) {
+            if(user.getStatus() == VerifyStatus.NOT_VERIFIED) {
+                unVerifyUser.add(user);
+            }
+        }
+        return unVerifyUser;
+    }
 
     @Override
     public List<User> getAllUser() {
@@ -49,7 +62,7 @@ public class UserServiceImpl implements UserService {
     public User addUser(
             JwtAuthenticationRequest authenticationRequest
     ) {
-        Authority authUser = Authority.builder().name(AuthorityName.ROLE_USER).build();
+        Authority authUser = Authority.builder().name(AuthorityName.ROLE_ADMIN).build();
         authorityRepository.save(authUser);
 
         PasswordEncoder encoder = new BCryptPasswordEncoder();

@@ -34,11 +34,13 @@ public class InitApp implements ApplicationListener<ApplicationReadyEvent>  {
 
     private void addAdmin(){
         PasswordEncoder encoder = new BCryptPasswordEncoder();
-        Authority authUser = Authority.builder().name(AuthorityName.ROLE_USER).build();
-        authorityRepository.save(authUser);
+        Authority admin = Authority.builder().name(AuthorityName.ROLE_ADMIN).build();
+        Authority superAdmin = Authority.builder().name(AuthorityName.ROLE_SUPER_ADMIN).build();
+        authorityRepository.save(admin);
+        authorityRepository.save(superAdmin);
         userRepository.save(
                 User.builder()
-                        .authorities(List.of(authUser))
+                        .authorities(List.of(admin))
                         .email("oat431@gmail.com")
                         .firstname("Sahachan")
                         .lastname("Tippimwong")
@@ -51,7 +53,33 @@ public class InitApp implements ApplicationListener<ApplicationReadyEvent>  {
         );
         userRepository.save(
                 User.builder()
-                        .authorities(List.of(authUser))
+                        .authorities(List.of(admin))
+                        .email("pot561@gmail.com")
+                        .firstname("Tippimwong")
+                        .lastname("Sahachan")
+                        .password(encoder.encode("user+321"))
+                        .username("pot561")
+                        .phoneNo("0836306461")
+                        .enabled(false)
+                        .lastPasswordResetDate(Date.from(LocalDate.of(2021, 01, 01).atStartOfDay(ZoneId.systemDefault()).toInstant()))
+                        .build()
+        );
+        userRepository.save(
+                User.builder()
+                        .authorities(List.of(admin))
+                        .email("pun321@gmail.com")
+                        .firstname("Thitisan")
+                        .lastname("Chiluek")
+                        .password(encoder.encode("user+111"))
+                        .username("pun321")
+                        .phoneNo("0836306261")
+                        .enabled(false)
+                        .lastPasswordResetDate(Date.from(LocalDate.of(2021, 01, 01).atStartOfDay(ZoneId.systemDefault()).toInstant()))
+                        .build()
+        );
+        userRepository.save(
+                User.builder()
+                        .authorities(List.of(superAdmin))
                         .email("transmatter.team@gmail.com")
                         .firstname("Transmatter")
                         .lastname("Admin")

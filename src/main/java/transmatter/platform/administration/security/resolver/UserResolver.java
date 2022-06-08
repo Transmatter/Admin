@@ -11,6 +11,7 @@ import transmatter.platform.administration.security.service.UserService;
 import transmatter.platform.administration.utils.TransmatterMapper;
 
 import javax.transaction.Transactional;
+import java.util.List;
 
 @Component
 public class UserResolver implements GraphQLQueryResolver, GraphQLMutationResolver {
@@ -31,5 +32,10 @@ public class UserResolver implements GraphQLQueryResolver, GraphQLMutationResolv
     @Transactional
     UserDto verifyUser(Long id,String status) {
         return TransmatterMapper.INSTANCE.getUserDto(userService.verifyUser(status,id));
+    }
+
+    @Transactional
+    List<UserDto> getUnVerifyAdmin() {
+        return TransmatterMapper.INSTANCE.getUserDto(userService.getUnVerifyAdmin());
     }
 }

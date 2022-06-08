@@ -1,5 +1,6 @@
 package transmatter.platform.administration.security.controller;
 
+import transmatter.platform.administration.email.service.EmailService;
 import transmatter.platform.administration.security.entity.User;
 import transmatter.platform.administration.security.repository.AuthorityRepository;
 import transmatter.platform.administration.security.service.UserService;
@@ -21,7 +22,9 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.web.bind.annotation.*;
 import transmatter.platform.administration.security.entity.JwtUser;
 
+import javax.mail.MessagingException;
 import javax.servlet.http.HttpServletRequest;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -43,6 +46,9 @@ public class AuthenticationRestController {
 
     @Autowired
     UserService userService;
+
+    @Autowired
+    EmailService emailService;
 
     @Autowired
     AuthorityRepository authorityRepository;
@@ -85,7 +91,7 @@ public class AuthenticationRestController {
     }
 
     @PostMapping("${jwt.route.register.path}")
-    public ResponseEntity<?> addUser(@RequestBody JwtAuthenticationRequest authenticationRequest, Device device) throws AuthenticationException {
+    public ResponseEntity<?> addUser(@RequestBody JwtAuthenticationRequest authenticationRequest, Device device) throws AuthenticationException, MessagingException, IOException {
         User user = new User();
         HttpHeaders responseHeader = new HttpHeaders();
         if(!userService.userValidation(authenticationRequest)){
@@ -96,6 +102,7 @@ public class AuthenticationRestController {
             );
         } else {
             user = userService.addUser(authenticationRequest);
+            emailService.sendMail(user.getEmail());
             return ResponseEntity.ok(TransmatterMapper.INSTANCE.getUserDto(user));
         }
     }
