@@ -23,5 +23,5 @@ type Mutation {
 
     # user feature
     updateUser(id:Int,user:UserInput) : UserDto
-    verifyUser(id:Int,status:String) : UserDto
+    verifyUser(id:Int,reason:String,status:String) : UserDto
 }

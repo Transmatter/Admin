@@ -55,6 +55,9 @@ public class NewsServiceImpl implements NewsService {
         return emptyAlt;
     }
 
+    /*
+    *
+    * */
     @Override
     public News updateImageContent(String id, List<Image> ImageText) {
         News news = newsDao.getContent(id);

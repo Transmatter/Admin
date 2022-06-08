@@ -1,6 +1,7 @@
 package transmatter.platform.administration.security.service;
 
 import lombok.SneakyThrows;
+import transmatter.platform.administration.email.service.EmailService;
 import transmatter.platform.administration.security.controller.JwtAuthenticationRequest;
 import transmatter.platform.administration.security.dao.UserDao;
 import transmatter.platform.administration.security.entity.*;
@@ -11,6 +12,8 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import transmatter.platform.administration.utils.SimpleUtils;
 
+import javax.mail.MessagingException;
+import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.List;
@@ -22,6 +25,9 @@ public class UserServiceImpl implements UserService {
 
     @Autowired
     AuthorityRepository authorityRepository;
+
+    @Autowired
+    EmailService emailService;
 
     @Override
     public List<User> getUnVerifyAdmin() {
@@ -83,11 +89,18 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User verifyUser(String status, Long id) {
+    @SneakyThrows
+    public User verifyUser(String status,String reason, Long id){
         VerifyStatus stat = VerifyStatus.NA;
-        if(status.equals("VERIFIED")) stat = VerifyStatus.VERIFIED;
-        if(status.equals("NOT_VERIFIED")) stat = VerifyStatus.NOT_VERIFIED;
         User user = userDao.getUser(id);
+        if(status.equals("VERIFIED")){
+            stat = VerifyStatus.VERIFIED;
+            emailService.sendVerifyMail(user.getEmail());
+        }
+        if(status.equals("NOT_VERIFIED")){
+            stat = VerifyStatus.NOT_VERIFIED;
+            emailService.sendUnVerifyMail(user.getEmail(),reason);
+        }
         user.setStatus(stat);
         return userDao.updateUser(user);
     }

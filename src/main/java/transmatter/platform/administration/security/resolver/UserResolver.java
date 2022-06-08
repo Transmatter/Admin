@@ -30,8 +30,9 @@ public class UserResolver implements GraphQLQueryResolver, GraphQLMutationResolv
     }
 
     @Transactional
-    UserDto verifyUser(Long id,String status) {
-        return TransmatterMapper.INSTANCE.getUserDto(userService.verifyUser(status,id));
+    @SneakyThrows
+    UserDto verifyUser(Long id,String reason,String status) {
+        return TransmatterMapper.INSTANCE.getUserDto(userService.verifyUser(status,reason,id));
     }
 
     @Transactional

@@ -4,6 +4,8 @@ import transmatter.platform.administration.security.controller.JwtAuthentication
 import transmatter.platform.administration.security.entity.User;
 import transmatter.platform.administration.security.entity.VerifyStatus;
 
+import javax.mail.MessagingException;
+import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.util.List;
 
@@ -15,5 +17,5 @@ public interface UserService {
     User getUserByUsername(String username);
     Boolean userValidation(JwtAuthenticationRequest authenticationRequest);
     User addUser(JwtAuthenticationRequest authenticationRequest);
-    User verifyUser(String status, Long id);
+    User verifyUser(String status,String reason, Long id) throws MessagingException, IOException;
 }
