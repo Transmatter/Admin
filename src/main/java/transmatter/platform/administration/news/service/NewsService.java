@@ -12,7 +12,7 @@ public interface NewsService {
     Page<News> getAllContents(PageRequest page);
     List<News> getAllContents();
     News deleteContent(String id);
-    List<News> getAllEmptyAltNews();
+    Page<News> getAllEmptyAltNews(PageRequest page);
     News updateImageContent(String id,List<Image> ImageText);
     Page<News> searchNews(String title,PageRequest page);
     Page<News> getNewsBySource(String source,PageRequest page);

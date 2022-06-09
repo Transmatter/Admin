@@ -2,6 +2,7 @@ package transmatter.platform.administration.news.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import transmatter.platform.administration.news.dao.NewsDao;
@@ -42,7 +43,7 @@ public class NewsServiceImpl implements NewsService {
     }
 
     @Override
-    public List<News> getAllEmptyAltNews() {
+    public Page<News> getAllEmptyAltNews(PageRequest page) {
         List<News> emptyAlt = new ArrayList<>();
         for (News news: newsDao.getAllContents()) {
             for(Image img : news.getImages()) {
@@ -52,12 +53,11 @@ public class NewsServiceImpl implements NewsService {
                 }
             }
         }
-        return emptyAlt;
+        final int start = (int)page.getOffset();
+        final int end = Math.min((start + page.getPageSize()), emptyAlt.size());
+        return new PageImpl<>(emptyAlt.subList(start,end),page,emptyAlt.size());
     }
 
-    /*
-    *
-    * */
     @Override
     public News updateImageContent(String id, List<Image> ImageText) {
         News news = newsDao.getContent(id);

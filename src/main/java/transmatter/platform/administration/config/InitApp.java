@@ -60,7 +60,7 @@ public class InitApp implements ApplicationListener<ApplicationReadyEvent>  {
                         .password(encoder.encode("user+321"))
                         .username("pot561")
                         .phoneNo("0836306461")
-                        .enabled(false)
+                        .enabled(true)
                         .lastPasswordResetDate(Date.from(LocalDate.of(2021, 01, 01).atStartOfDay(ZoneId.systemDefault()).toInstant()))
                         .build()
         );
@@ -73,7 +73,7 @@ public class InitApp implements ApplicationListener<ApplicationReadyEvent>  {
                         .password(encoder.encode("user+111"))
                         .username("pun321")
                         .phoneNo("0836306261")
-                        .enabled(false)
+                        .enabled(true)
                         .lastPasswordResetDate(Date.from(LocalDate.of(2021, 01, 01).atStartOfDay(ZoneId.systemDefault()).toInstant()))
                         .build()
         );

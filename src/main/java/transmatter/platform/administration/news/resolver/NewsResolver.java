@@ -38,8 +38,8 @@ public class NewsResolver implements GraphQLQueryResolver, GraphQLMutationResolv
     }
 
     @Transactional
-    List<News> getAllEmptyAltNews() {
-        return newsService.getAllEmptyAltNews();
+    Page<News> getAllEmptyAltNews(PageFilter filter) {
+        return newsService.getAllEmptyAltNews(PageRequest.of(filter.getPage()-1,filter.getSize()));
     }
 
     @Transactional
