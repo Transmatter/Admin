@@ -48,6 +48,7 @@ public class InitApp implements ApplicationListener<ApplicationReadyEvent>  {
                         .username("oat431")
                         .phoneNo("0836306462")
                         .enabled(true)
+                        .status(VerifyStatus.VERIFIED)
                         .lastPasswordResetDate(Date.from(LocalDate.of(2021, 01, 01).atStartOfDay(ZoneId.systemDefault()).toInstant()))
                         .build()
         );
