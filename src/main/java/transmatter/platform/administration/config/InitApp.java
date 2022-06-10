@@ -55,7 +55,7 @@ public class InitApp implements ApplicationListener<ApplicationReadyEvent>  {
         userRepository.save(
                 User.builder()
                         .authorities(List.of(admin))
-                        .email("pot561@gmail.com")
+                        .email("sahachan_t@cmu.ac.th")
                         .firstname("Tippimwong")
                         .lastname("Sahachan")
                         .password(encoder.encode("user+321"))

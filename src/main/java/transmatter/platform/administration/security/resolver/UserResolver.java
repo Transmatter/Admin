@@ -4,10 +4,13 @@ import graphql.kickstart.tools.GraphQLMutationResolver;
 import graphql.kickstart.tools.GraphQLQueryResolver;
 import lombok.SneakyThrows;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Component;
 import transmatter.platform.administration.security.dto.UserDto;
 import transmatter.platform.administration.security.entity.User;
 import transmatter.platform.administration.security.service.UserService;
+import transmatter.platform.administration.utils.PageFilter;
 import transmatter.platform.administration.utils.TransmatterMapper;
 
 import javax.transaction.Transactional;
@@ -36,7 +39,7 @@ public class UserResolver implements GraphQLQueryResolver, GraphQLMutationResolv
     }
 
     @Transactional
-    List<UserDto> getUnVerifyAdmin() {
-        return TransmatterMapper.INSTANCE.getUserDto(userService.getUnVerifyAdmin());
+    Page<User> getUnVerifyAdmin(PageFilter filter) {
+        return userService.getUnVerifyAdmin(PageRequest.of(filter.getPage()-1,filter.getSize()));
     }
 }

@@ -1,6 +1,9 @@
 package transmatter.platform.administration.security.service;
 
 import lombok.SneakyThrows;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.PageRequest;
 import transmatter.platform.administration.email.service.EmailService;
 import transmatter.platform.administration.security.controller.JwtAuthenticationRequest;
 import transmatter.platform.administration.security.dao.UserDao;
@@ -30,7 +33,7 @@ public class UserServiceImpl implements UserService {
     EmailService emailService;
 
     @Override
-    public List<User> getUnVerifyAdmin() {
+    public Page<User> getUnVerifyAdmin(PageRequest page) {
         List<User> users = userDao.getAllUser();
         List<User> unVerifyUser = new ArrayList<>();
         for(User user : users) {
@@ -38,7 +41,9 @@ public class UserServiceImpl implements UserService {
                 unVerifyUser.add(user);
             }
         }
-        return unVerifyUser;
+        final int start = (int)page.getOffset();
+        final int end = Math.min((start + page.getPageSize()), unVerifyUser.size());
+        return new PageImpl<>(unVerifyUser.subList(start,end),page,unVerifyUser.size());
     }
 
     @Override

@@ -46,6 +46,9 @@ public class NewsServiceImpl implements NewsService {
     public Page<News> getAllEmptyAltNews(PageRequest page) {
         List<News> emptyAlt = new ArrayList<>();
         for (News news: newsDao.getAllContents()) {
+            if(news.getImages() == null) {
+                continue;
+            }
             for(Image img : news.getImages()) {
                 if(img.getAlt().length() == 0){
                     emptyAlt.add(news);

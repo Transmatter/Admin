@@ -13,7 +13,7 @@ type Query {
 
     # user feature
     getUserByID(id:Int) : UserDto
-    getUnVerifyAdmin : [UserDto]
+    getUnVerifyAdmin(filter: PageFilter) : PageUser
 }
 
 type Mutation {
