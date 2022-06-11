@@ -1,0 +1,4 @@
+input PageFilter {
+    page: Int,
+    size : Int
+}
