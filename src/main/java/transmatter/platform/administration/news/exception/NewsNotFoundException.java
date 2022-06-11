@@ -33,7 +33,7 @@ public class NewsNotFoundException  extends RuntimeException implements GraphQLE
 
         extension.put("error_code", 320);
         extension.put("message", String.format("The News id: %d that you looking for, does not exists",id));
-        extension.put("displayMessage", String.format("ไม่มี News id: %d อยู่ในระบบ",id));
+        extension.put("displayMessage", String.format("News id: %d not exist",id));
         return extension;
     }
 }
