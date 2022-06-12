@@ -7,6 +7,11 @@ import transmatter.platform.administration.news.entity.News;
 import java.util.List;
 
 public interface NewsDao {
+    /**
+     * This method
+     * @param id
+     * @return
+     */
     News getContent(String id);
     Page<News> getAllContents(PageRequest page);
     List<News> getAllContents();
