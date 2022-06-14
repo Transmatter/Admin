@@ -6,12 +6,12 @@ import org.springframework.context.ApplicationListener;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
+import transmatter.platform.administration.security.entity.Admin;
 import transmatter.platform.administration.security.entity.Authority;
 import transmatter.platform.administration.security.entity.AuthorityName;
-import transmatter.platform.administration.security.entity.User;
 import transmatter.platform.administration.security.entity.VerifyStatus;
 import transmatter.platform.administration.security.repository.AuthorityRepository;
-import transmatter.platform.administration.security.repository.UserRepository;
+import transmatter.platform.administration.security.repository.AdminRepository;
 
 import java.time.LocalDate;
 import java.time.ZoneId;
@@ -21,12 +21,12 @@ import java.util.List;
 @Component
 public class InitApp implements ApplicationListener<ApplicationReadyEvent>  {
     @Autowired
-    UserRepository userRepository;
+    AdminRepository userRepository;
 
     @Autowired
     AuthorityRepository authorityRepository;
 
-    User admin1, admin2;
+    Admin admin1, admin2;
     @Override
     public void onApplicationEvent(ApplicationReadyEvent event) {
         addAdmin();
@@ -39,7 +39,7 @@ public class InitApp implements ApplicationListener<ApplicationReadyEvent>  {
         authorityRepository.save(admin);
         authorityRepository.save(superAdmin);
         userRepository.save(
-                User.builder()
+                transmatter.platform.administration.security.entity.Admin.builder()
                         .authorities(List.of(admin))
                         .email("oat431@gmail.com")
                         .firstname("Sahachan")
@@ -53,7 +53,7 @@ public class InitApp implements ApplicationListener<ApplicationReadyEvent>  {
                         .build()
         );
         userRepository.save(
-                User.builder()
+                transmatter.platform.administration.security.entity.Admin.builder()
                         .authorities(List.of(admin))
                         .email("sahachan_t@cmu.ac.th")
                         .firstname("Tippimwong")
@@ -66,7 +66,7 @@ public class InitApp implements ApplicationListener<ApplicationReadyEvent>  {
                         .build()
         );
         userRepository.save(
-                User.builder()
+                Admin.builder()
                         .authorities(List.of(admin))
                         .email("pun321@gmail.com")
                         .firstname("Thitisan")
@@ -79,7 +79,7 @@ public class InitApp implements ApplicationListener<ApplicationReadyEvent>  {
                         .build()
         );
         userRepository.save(
-                User.builder()
+                transmatter.platform.administration.security.entity.Admin.builder()
                         .authorities(List.of(superAdmin))
                         .email("transmatter.team@gmail.com")
                         .firstname("Transmatter")
