@@ -79,7 +79,6 @@ public class AdminServiceImpl implements AdminService {
         admin.setEmail(authenticationRequest.getEmail());
         admin.setUsername(authenticationRequest.getUsername());
         admin.setPassword(encoder.encode(authenticationRequest.getPassword()));
-        admin.setImageProfile(authenticationRequest.getImageProfile());
         admin.setFirstname(authenticationRequest.getFirstname());
         admin.setLastname(authenticationRequest.getLastname());
         admin.setPhoneNo(authenticationRequest.getPhoneNo());
