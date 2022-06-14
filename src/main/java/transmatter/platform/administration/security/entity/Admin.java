@@ -20,7 +20,7 @@ import java.util.List;
 @JsonIgnoreProperties(ignoreUnknown = true)
 @AllArgsConstructor
 @NoArgsConstructor
-public class User {
+public class Admin {
 
     @Id
     @Column(name = "ID",nullable = false)
