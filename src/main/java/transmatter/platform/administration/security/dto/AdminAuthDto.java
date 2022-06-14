@@ -12,7 +12,7 @@ import java.util.List;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class UserAuthDto {
+public class AdminAuthDto {
     Long id;
     String username;
     VerifyStatus status;

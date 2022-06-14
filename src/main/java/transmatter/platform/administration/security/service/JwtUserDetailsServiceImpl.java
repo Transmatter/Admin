@@ -5,8 +5,8 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
-import transmatter.platform.administration.security.entity.User;
-import transmatter.platform.administration.security.repository.UserRepository;
+import transmatter.platform.administration.security.entity.Admin;
+import transmatter.platform.administration.security.repository.AdminRepository;
 import transmatter.platform.administration.utils.JwtUserFactory;
 
 /**
@@ -16,16 +16,16 @@ import transmatter.platform.administration.utils.JwtUserFactory;
 public class JwtUserDetailsServiceImpl implements UserDetailsService {
 
     @Autowired
-    private UserRepository userRepository;
+    private AdminRepository userRepository;
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        User user = userRepository.findByUsername(username);
+        Admin admin = userRepository.findByUsername(username);
 
-        if (user == null) {
+        if (admin == null) {
             throw new UsernameNotFoundException(String.format("No user found with username '%s'.", username));
         } else {
-            return JwtUserFactory.create(user);
+            return JwtUserFactory.create(admin);
         }
     }
 }

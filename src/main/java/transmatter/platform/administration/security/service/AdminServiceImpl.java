@@ -6,7 +6,7 @@ import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
 import transmatter.platform.administration.email.service.EmailService;
 import transmatter.platform.administration.security.controller.JwtAuthenticationRequest;
-import transmatter.platform.administration.security.dao.UserDao;
+import transmatter.platform.administration.security.dao.AdminDao;
 import transmatter.platform.administration.security.entity.*;
 import transmatter.platform.administration.security.repository.AuthorityRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,16 +15,13 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import transmatter.platform.administration.utils.SimpleUtils;
 
-import javax.mail.MessagingException;
-import java.io.IOException;
-import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.List;
 
 @Service
-public class UserServiceImpl implements UserService {
+public class AdminServiceImpl implements AdminService {
     @Autowired
-    UserDao userDao;
+    AdminDao adminDao;
 
     @Autowired
     AuthorityRepository authorityRepository;
@@ -33,44 +30,44 @@ public class UserServiceImpl implements UserService {
     EmailService emailService;
 
     @Override
-    public Page<User> getUnVerifyAdmin(PageRequest page) {
-        List<User> users = userDao.getAllUser();
-        List<User> unVerifyUser = new ArrayList<>();
-        for(User user : users) {
-            if(user.getStatus() == VerifyStatus.NOT_VERIFIED) {
-                unVerifyUser.add(user);
+    public Page<Admin> getUnVerifyAdmin(PageRequest page) {
+        List<Admin> admins = adminDao.getAllUser();
+        List<Admin> unVerifyAdmin = new ArrayList<>();
+        for(Admin admin : admins) {
+            if(admin.getStatus() == VerifyStatus.NOT_VERIFIED) {
+                unVerifyAdmin.add(admin);
             }
         }
         final int start = (int)page.getOffset();
-        final int end = Math.min((start + page.getPageSize()), unVerifyUser.size());
-        return new PageImpl<>(unVerifyUser.subList(start,end),page,unVerifyUser.size());
+        final int end = Math.min((start + page.getPageSize()), unVerifyAdmin.size());
+        return new PageImpl<>(unVerifyAdmin.subList(start,end),page, unVerifyAdmin.size());
     }
 
     @Override
-    public List<User> getAllUser() {
-        return userDao.getAllUser();
+    public List<Admin> getAllUser() {
+        return adminDao.getAllUser();
     }
 
     @Override
-    public User getUser(Long userID) {
-        return userDao.getUser(userID);
+    public Admin getAdmin(Long id) {
+        return adminDao.getAdmin(id);
     }
 
     @Override
     @SneakyThrows
-    public User updateUser(Long userID, User authenticationRequest) {
-        User user = userDao.getUser(userID);
-        SimpleUtils.clone(authenticationRequest,user,"password","status");
-        return userDao.updateUser(user);
+    public Admin updateAdmin(Long id, Admin authenticationRequest) {
+        Admin admin = adminDao.getAdmin(id);
+        SimpleUtils.clone(authenticationRequest, admin,"password","status");
+        return adminDao.updateAdmin(admin);
     }
 
     @Override
-    public User getUserByUsername(String username) {
-        return userDao.getUserByUsername(username);
+    public Admin getAdminByUsername(String username) {
+        return adminDao.getAdminByUsername(username);
     }
 
     @Override
-    public User addUser(
+    public Admin addUser(
             JwtAuthenticationRequest authenticationRequest
     ) {
         Authority authUser = Authority.builder().name(AuthorityName.ROLE_ADMIN).build();
@@ -78,43 +75,43 @@ public class UserServiceImpl implements UserService {
 
         PasswordEncoder encoder = new BCryptPasswordEncoder();
 
-        User user = new User();
-        user.setEmail(authenticationRequest.getEmail());
-        user.setUsername(authenticationRequest.getUsername());
-        user.setPassword(encoder.encode(authenticationRequest.getPassword()));
-        user.setImageProfile(authenticationRequest.getImageProfile());
-        user.setFirstname(authenticationRequest.getFirstname());
-        user.setLastname(authenticationRequest.getLastname());
-        user.setPhoneNo(authenticationRequest.getPhoneNo());
+        Admin admin = new Admin();
+        admin.setEmail(authenticationRequest.getEmail());
+        admin.setUsername(authenticationRequest.getUsername());
+        admin.setPassword(encoder.encode(authenticationRequest.getPassword()));
+        admin.setImageProfile(authenticationRequest.getImageProfile());
+        admin.setFirstname(authenticationRequest.getFirstname());
+        admin.setLastname(authenticationRequest.getLastname());
+        admin.setPhoneNo(authenticationRequest.getPhoneNo());
 
-        user.setEnabled(true);
-        user.getAuthorities().add(authUser);
+        admin.setEnabled(true);
+        admin.getAuthorities().add(authUser);
 
-        return userDao.addUser(user);
+        return adminDao.addUser(admin);
     }
 
     @Override
     @SneakyThrows
-    public User verifyUser(String status,String reason, Long id){
+    public Admin verifyAdmin(String status, String reason, Long id){
         VerifyStatus stat = VerifyStatus.NA;
-        User user = userDao.getUser(id);
+        Admin admin = adminDao.getAdmin(id);
         if(status.equals("VERIFIED")){
             stat = VerifyStatus.VERIFIED;
-            emailService.sendVerifyMail(user.getEmail());
+            emailService.sendVerifyMail(admin.getEmail());
         }
         if(status.equals("NOT_VERIFIED")){
             stat = VerifyStatus.NOT_VERIFIED;
-            emailService.sendUnVerifyMail(user.getEmail(),reason);
+            emailService.sendUnVerifyMail(admin.getEmail(),reason);
         }
-        user.setStatus(stat);
-        return userDao.updateUser(user);
+        admin.setStatus(stat);
+        return adminDao.updateAdmin(admin);
     }
 
     @Override
     public Boolean userValidation(JwtAuthenticationRequest authenticationRequest){
-        List<User> users = userDao.getAllUser();
+        List<Admin> admins = adminDao.getAllUser();
         if(authenticationRequest.getEmail() == null){
-            for(User u : users){
+            for(Admin u : admins){
                 if(u.getUsername().equals(authenticationRequest.getUsername())){
                     return false;
                 }
@@ -123,7 +120,7 @@ public class UserServiceImpl implements UserService {
         }
 
         // normal case
-        for(User u : users){
+        for(Admin u : admins){
             if(
                     u.getUsername().equals(authenticationRequest.getUsername())
             ){

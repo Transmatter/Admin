@@ -1,8 +1,8 @@
 package transmatter.platform.administration.security.dao;
 
-import transmatter.platform.administration.security.entity.User;
+import transmatter.platform.administration.security.entity.Admin;
 import transmatter.platform.administration.security.repository.AuthorityRepository;
-import transmatter.platform.administration.security.repository.UserRepository;
+import transmatter.platform.administration.security.repository.AdminRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -11,40 +11,40 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public class UserDaoImpl implements UserDao {
+public class AdminDaoImpl implements AdminDao {
     @Autowired
-    UserRepository userRepository;
+    AdminRepository userRepository;
 
     @Autowired
     AuthorityRepository authorityRepository;
 
     @Override
-    public List<User> getAllUser() {
+    public List<Admin> getAllUser() {
         return userRepository.findAll();
     }
 
     @Override
-    public Page<User> getAllUserPagination(Integer pageSize, Integer pageNo) {
+    public Page<Admin> getAllUserPagination(Integer pageSize, Integer pageNo) {
         return userRepository.findAll(PageRequest.of(pageNo-1,pageSize));
     }
 
     @Override
-    public User getUser(Long userID) {
-        return userRepository.findById(userID).orElse(null);
+    public Admin getAdmin(Long id) {
+        return userRepository.findById(id).orElse(null);
     }
 
     @Override
-    public User updateUser(User user) {
-        return userRepository.save(user);
+    public Admin updateAdmin(Admin admin) {
+        return userRepository.save(admin);
     }
 
     @Override
-    public User getUserByUsername(String username){
+    public Admin getAdminByUsername(String username){
         return userRepository.findByUsername(username);
     }
 
     @Override
-    public User addUser(User user){
-        return userRepository.save(user);
+    public Admin addUser(Admin admin){
+        return userRepository.save(admin);
     }
 }
