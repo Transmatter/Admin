@@ -42,10 +42,10 @@ public class NewsResolver implements GraphQLQueryResolver, GraphQLMutationResolv
         return newsService.getAllEmptyAltNews(PageRequest.of(filter.getPage()-1,filter.getSize()));
     }
 
-    @Transactional
-    News updateImageContent(String id,List<Image> imageText){
-        return newsService.updateImageContent(id,imageText);
-    }
+//    @Transactional
+//    News updateImageContent(String id,List<Image> imageText){
+//        return newsService.updateImageContent(id,imageText);
+//    }
 
     @Transactional
     Page<News> getNewsBySource(String source,PageFilter filter) {
@@ -54,5 +54,9 @@ public class NewsResolver implements GraphQLQueryResolver, GraphQLMutationResolv
 
     Page<News> searchNews(String title, PageFilter filter) {
         return newsService.searchNews(title,PageRequest.of(filter.getPage()-1,filter.getSize()));
+    }
+
+    Page<News> getNewsBySourceAndType(String source, String type, PageFilter filter){
+        return newsService.getNewsBySourceAndType(source,type,PageRequest.of(filter.getPage(),filter.getSize()));
     }
 }

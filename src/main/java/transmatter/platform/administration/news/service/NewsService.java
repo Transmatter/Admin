@@ -10,11 +10,12 @@ import java.util.List;
 public interface NewsService {
     News getContent(String id);
     Page<News> getAllContents(PageRequest page);
-    List<News> getAllContents();
+//    List<News> getAllContents();
     News deleteContent(String id);
     Page<News> getAllEmptyAltNews(PageRequest page);
-    News updateImageContent(String id,List<Image> ImageText);
+//    News updateImageContent(String id,List<Image> ImageText);
     Page<News> searchNews(String title,PageRequest page);
     Page<News> getNewsBySource(String source,PageRequest page);
+    Page<News> getNewsBySourceAndType(String source, String type,PageRequest page);
 }
 

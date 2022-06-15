@@ -11,7 +11,8 @@ public interface NewsDao {
     Page<News> getAllContents(PageRequest page);
     List<News> getAllContents();
     void deleteContent(String id);
-    News updateContent(News news);
+//    News updateContent(News news);
     Page<News> searchContent(String title,PageRequest page);
     Page<News> getBySource(String source,PageRequest page);
+    Page<News> getBySourceAndType(String source, String type, PageRequest page);
 }

@@ -30,11 +30,11 @@ public class NewsServiceImpl implements NewsService {
         return newsDao.getAllContents(page);
     }
 
-    @Override
-    public List<News> getAllContents(){
-        return newsDao.getAllContents();
-    }
-
+//    @Override
+//    public List<News> getAllContents(){
+//        return newsDao.getAllContents();
+//    }
+//
     @Override
     public News deleteContent(String id) {
         News news = newsDao.getContent(id);
@@ -61,15 +61,15 @@ public class NewsServiceImpl implements NewsService {
         return new PageImpl<>(emptyAlt.subList(start,end),page,emptyAlt.size());
     }
 
-    @Override
-    public News updateImageContent(String id, List<Image> ImageText) {
-        News news = newsDao.getContent(id);
-        for(int i=0;i<ImageText.size();i++){
-            news.getImages().get(i).setAlt(ImageText.get(i).getAlt());
-        }
-        return newsDao.updateContent(news);
-    }
-
+//    @Override
+//    public News updateImageContent(String id, List<Image> ImageText) {
+//        News news = newsDao.getContent(id);
+//        for(int i=0;i<ImageText.size();i++){
+//            news.getImages().get(i).setAlt(ImageText.get(i).getAlt());
+//        }
+//        return newsDao.updateContent(news);
+//    }
+//
     @Override
     public Page<News> searchNews(String title,PageRequest page) {
         return newsDao.searchContent(title,page);
@@ -78,5 +78,10 @@ public class NewsServiceImpl implements NewsService {
     @Override
     public Page<News> getNewsBySource(String source, PageRequest page) {
         return newsDao.getBySource(source,page);
+    }
+
+    @Override
+    public Page<News> getNewsBySourceAndType(String source, String type, PageRequest page) {
+        return newsDao.getBySourceAndType(source,type,page);
     }
 }

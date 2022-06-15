@@ -36,10 +36,10 @@ public class NewDaoImpl implements NewsDao {
         newsRepository.deleteById(id);
     }
 
-    @Override
-    public News updateContent(News news) {
-        return newsRepository.save(news);
-    }
+//    @Override
+//    public News updateContent(News news) {
+//        return newsRepository.save(news);
+//    }
 
     @Override
     public Page<News> searchContent(String title, PageRequest page) {
@@ -49,5 +49,10 @@ public class NewDaoImpl implements NewsDao {
     @Override
     public Page<News> getBySource(String source,PageRequest page) {
         return newsRepository.findBySource(source,page);
+    }
+
+    @Override
+    public Page<News> getBySourceAndType(String source, String type, PageRequest page) {
+        return newsRepository.findBySourceAndType(source,type,page);
     }
 }
