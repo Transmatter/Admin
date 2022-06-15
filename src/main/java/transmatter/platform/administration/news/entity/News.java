@@ -29,4 +29,8 @@ public class News {
     String type;
     List<Image> images;
     List<Comment> comment;
+
+     public List<News> getAllNews(){
+         return null;
+     }
 }
