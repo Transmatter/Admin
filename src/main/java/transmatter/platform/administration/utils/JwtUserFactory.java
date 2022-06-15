@@ -2,9 +2,9 @@ package transmatter.platform.administration.utils;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import transmatter.platform.administration.security.entity.Admin;
 import transmatter.platform.administration.security.entity.Authority;
 import transmatter.platform.administration.security.entity.JwtUser;
-import transmatter.platform.administration.security.entity.User;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -14,17 +14,17 @@ public final class JwtUserFactory {
     private JwtUserFactory() {
     }
 
-    public static JwtUser create(User user) {
+    public static JwtUser create(Admin admin) {
         return new JwtUser(
-                user.getId(),
-                user.getUsername(),
-                user.getFirstname(),
-                user.getLastname(),
-                user.getEmail(),
-                user.getPassword(),
-                mapToGrantedAuthorities(user.getAuthorities()),
-                user.getEnabled(),
-                user.getLastPasswordResetDate()
+                admin.getId(),
+                admin.getUsername(),
+                admin.getFirstname(),
+                admin.getLastname(),
+                admin.getEmail(),
+                admin.getPassword(),
+                mapToGrantedAuthorities(admin.getAuthorities()),
+                admin.getEnabled(),
+                admin.getLastPasswordResetDate()
         );
     }
 

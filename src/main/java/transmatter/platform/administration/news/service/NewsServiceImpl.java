@@ -1,6 +1,9 @@
 package transmatter.platform.administration.news.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import transmatter.platform.administration.news.dao.NewsDao;
 import transmatter.platform.administration.news.entity.Image;
@@ -23,10 +26,15 @@ public class NewsServiceImpl implements NewsService {
     }
 
     @Override
-    public List<News> getAllContents() {
-        return newsDao.getAllContents();
+    public Page<News> getAllContents(PageRequest page) {
+        return newsDao.getAllContents(page);
     }
 
+//    @Override
+//    public List<News> getAllContents(){
+//        return newsDao.getAllContents();
+//    }
+//
     @Override
     public News deleteContent(String id) {
         News news = newsDao.getContent(id);
@@ -35,9 +43,12 @@ public class NewsServiceImpl implements NewsService {
     }
 
     @Override
-    public List<News> getAllEmptyAltNews() {
+    public Page<News> getAllEmptyAltNews(PageRequest page) {
         List<News> emptyAlt = new ArrayList<>();
         for (News news: newsDao.getAllContents()) {
+            if(news.getImages() == null) {
+                continue;
+            }
             for(Image img : news.getImages()) {
                 if(img.getAlt().length() == 0){
                     emptyAlt.add(news);
@@ -45,25 +56,32 @@ public class NewsServiceImpl implements NewsService {
                 }
             }
         }
-        return emptyAlt;
+        final int start = (int)page.getOffset();
+        final int end = Math.min((start + page.getPageSize()), emptyAlt.size());
+        return new PageImpl<>(emptyAlt.subList(start,end),page,emptyAlt.size());
+    }
+
+//    @Override
+//    public News updateImageContent(String id, List<Image> ImageText) {
+//        News news = newsDao.getContent(id);
+//        for(int i=0;i<ImageText.size();i++){
+//            news.getImages().get(i).setAlt(ImageText.get(i).getAlt());
+//        }
+//        return newsDao.updateContent(news);
+//    }
+//
+    @Override
+    public Page<News> searchNews(String title,PageRequest page) {
+        return newsDao.searchContent(title,page);
     }
 
     @Override
-    public News updateImageContent(String id, List<Image> ImageText) {
-        News news = newsDao.getContent(id);
-        for(int i=0;i<ImageText.size();i++){
-            news.getImages().get(i).setAlt(ImageText.get(i).getAlt());
-        }
-        return newsDao.updateContent(news);
+    public Page<News> getNewsBySource(String source, PageRequest page) {
+        return newsDao.getBySource(source,page);
     }
 
     @Override
-    public List<News> searchNews(String title) {
-        return newsDao.searchContent(title);
-    }
-
-    @Override
-    public List<News> getNewsBySource(String source) {
-        return newsDao.getBySource(source);
+    public Page<News> getNewsBySourceAndType(String source, String type, PageRequest page) {
+        return newsDao.getBySourceAndType(source,type,page);
     }
 }

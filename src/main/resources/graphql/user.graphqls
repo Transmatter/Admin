@@ -9,6 +9,24 @@ type UserDto {
     status : String
 }
 
+type PageUser {
+    number : Int,
+    totalPages : Int,
+    totalElements : Int,
+    content : [User]
+}
+
+type User {
+    id: Int
+    username: String
+    email: String
+    firstname: String
+    lastname: String
+    imageProfile: String
+    phoneNo: String
+    status : String
+}
+
 input UserInput {
     username: String
     email: String

@@ -26,6 +26,7 @@ public class News {
     String public_date;
     String title;
     String content;
+    String type;
     List<Image> images;
     List<Comment> comment;
 }

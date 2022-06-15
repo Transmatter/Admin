@@ -1,4 +1,4 @@
-package transmatter.platform.administration.email.entity;
+package transmatter.platform.administration.utils;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -6,9 +6,10 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
+@Builder
 @AllArgsConstructor
 @NoArgsConstructor
-@Builder
-public class Email {
-    String email;
+public class PageFilter {
+    int page;
+    int size;
 }
