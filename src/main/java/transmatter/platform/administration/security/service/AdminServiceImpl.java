@@ -50,6 +50,9 @@ public class AdminServiceImpl implements AdminService {
 
     @Override
     public Admin getAdmin(Long id) {
+        if(id == null){
+            return null;
+        }
         return adminDao.getAdmin(id);
     }
 
@@ -57,6 +60,12 @@ public class AdminServiceImpl implements AdminService {
     @SneakyThrows
     public Admin updateAdmin(Long id, Admin authenticationRequest) {
         Admin admin = adminDao.getAdmin(id);
+        if(id == null){
+            return null;
+        }
+        if(admin == null){
+            return null;
+        }
         SimpleUtils.clone(authenticationRequest, admin,"password","status");
         return adminDao.updateAdmin(admin);
     }

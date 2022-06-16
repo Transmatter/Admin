@@ -1,5 +1,6 @@
 package transmatter.platform.administration.security.controller;
 
+import org.springframework.data.mongodb.util.BsonUtils;
 import transmatter.platform.administration.email.service.EmailService;
 import transmatter.platform.administration.security.entity.Admin;
 import transmatter.platform.administration.security.repository.AuthorityRepository;
@@ -105,6 +106,7 @@ public class AuthenticationRestController {
             emailService.sendMail(admin.getEmail());
             return ResponseEntity.ok(TransmatterMapper.INSTANCE.getAdminDto(admin));
         }
+
     }
 
 }
