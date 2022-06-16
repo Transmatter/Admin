@@ -59,11 +59,17 @@ public class AdminServiceImpl implements AdminService {
     @Override
     @SneakyThrows
     public Admin updateAdmin(Long id, Admin authenticationRequest) {
-        Admin admin = adminDao.getAdmin(id);
         if(id == null){
             return null;
         }
+        Admin admin = adminDao.getAdmin(id);
         if(admin == null){
+            return null;
+        }
+        if(authenticationRequest == null){
+            return null;
+        }
+        if(adminCheckDuplicateEmail(authenticationRequest.getEmail())){
             return null;
         }
         SimpleUtils.clone(authenticationRequest, admin,"password","status");
@@ -102,9 +108,12 @@ public class AdminServiceImpl implements AdminService {
     @Override
     @SneakyThrows
     public Admin verifyAdmin(String status, String reason, Long id){
+        if(id == null) return null;
         VerifyStatus stat = VerifyStatus.NA;
         Admin admin = adminDao.getAdmin(id);
+        if(admin == null) return null;
         if(status.equals("VERIFIED")){
+            if(admin.getStatus() == VerifyStatus.VERIFIED) return null;
             stat = VerifyStatus.VERIFIED;
             emailService.sendVerifyMail(admin.getEmail());
         }
@@ -112,6 +121,7 @@ public class AdminServiceImpl implements AdminService {
             stat = VerifyStatus.NOT_VERIFIED;
             emailService.sendUnVerifyMail(admin.getEmail(),reason);
         }
+        if(stat == VerifyStatus.NA) return null;
         admin.setStatus(stat);
         return adminDao.updateAdmin(admin);
     }
@@ -133,6 +143,14 @@ public class AdminServiceImpl implements AdminService {
             if(
                     u.getUsername().equals(authenticationRequest.getUsername())
             ){
+                return false;
+            }
+        }
+        return true;
+    }
+    private Boolean adminCheckDuplicateEmail(String email){
+        for(Admin admin : adminDao.getAllUser()) {
+            if(admin.getEmail().equals(email)){
                 return false;
             }
         }
