@@ -54,4 +54,9 @@ public class ContentDaoImpl implements ContentDao {
     public Page<Content> getBySourceAndType(String source, String type, PageRequest page) {
         return contentRepository.findBySourceAndType(source,type,page);
     }
+
+    @Override
+    public Page<Content> getAllEmptyAltNews(PageRequest page) {
+        return contentRepository.findByImages_AltIsNull(page);
+    }
 }

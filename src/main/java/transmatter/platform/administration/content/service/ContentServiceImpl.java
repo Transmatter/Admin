@@ -44,21 +44,7 @@ public class ContentServiceImpl implements ContentService {
 
     @Override
     public Page<Content> getAllEmptyAltNews(PageRequest page) {
-        List<Content> emptyAlt = new ArrayList<>();
-        for (Content content : contentDao.getAllContents()) {
-            if(content.getImages() == null) {
-                continue;
-            }
-            for(Image img : content.getImages()) {
-                if(img.getAlt().length() == 0){
-                    emptyAlt.add(content);
-                    break;
-                }
-            }
-        }
-        final int start = (int)page.getOffset();
-        final int end = Math.min((start + page.getPageSize()), emptyAlt.size());
-        return new PageImpl<>(emptyAlt.subList(start,end),page,emptyAlt.size());
+        return contentDao.getAllEmptyAltNews(page);
     }
 
 //    @Override

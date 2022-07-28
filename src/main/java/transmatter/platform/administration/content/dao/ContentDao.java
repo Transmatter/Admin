@@ -15,4 +15,6 @@ public interface ContentDao {
     Page<Content> searchContent(String title, PageRequest page);
     Page<Content> getBySource(String source, PageRequest page);
     Page<Content> getBySourceAndType(String source, String type, PageRequest page);
+
+    Page<Content> getAllEmptyAltNews(PageRequest page);
 }

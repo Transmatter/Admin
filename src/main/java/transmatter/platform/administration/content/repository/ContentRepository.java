@@ -9,4 +9,5 @@ public interface ContentRepository extends MongoRepository<Content,String> {
     Page<Content> findByTitleContaining(String title, Pageable page);
     Page<Content> findBySource(String source, Pageable page);
     Page<Content> findBySourceAndType(String source, String type, Pageable page);
+    Page<Content> findByImages_AltIsNull(Pageable page);
 }
