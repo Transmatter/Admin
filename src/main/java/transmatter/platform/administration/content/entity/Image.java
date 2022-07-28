@@ -1,4 +1,4 @@
-package transmatter.platform.administration.news.entity;
+package transmatter.platform.administration.content.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

@@ -3,8 +3,8 @@ package transmatter.platform.administration.utils;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.factory.Mappers;
-import transmatter.platform.administration.news.dto.NewsDto;
-import transmatter.platform.administration.news.entity.News;
+import transmatter.platform.administration.content.dto.ContentDto;
+import transmatter.platform.administration.content.entity.Content;
 import transmatter.platform.administration.security.dto.AdminAuthDto;
 import transmatter.platform.administration.security.dto.AdminDto;
 import transmatter.platform.administration.security.entity.Admin;
@@ -16,8 +16,8 @@ import java.util.stream.Collectors;
 public interface TransmatterMapper {
     TransmatterMapper INSTANCE = Mappers.getMapper(TransmatterMapper.class);
 
-    NewsDto getNewsDto(News news);
-    List<NewsDto> getNewsDto(List<News> news);
+    ContentDto getNewsDto(Content content);
+    List<ContentDto> getNewsDto(List<Content> contents);
 
     @Mapping(target = "status",expression = "java( admin.getStatus().toString())")
     AdminDto getAdminDto(Admin admin);
