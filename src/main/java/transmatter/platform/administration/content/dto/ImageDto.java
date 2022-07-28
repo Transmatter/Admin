@@ -1,4 +1,4 @@
-package transmatter.platform.administration.news.dto;
+package transmatter.platform.administration.content.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
