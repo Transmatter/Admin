@@ -4,12 +4,25 @@ schema {
 }
 
 type Query {
-    getContent(id:String): News
-    getAllContents: [News]
-    getAllEmptyAltNews: [News]
+    # content feature
+    getContent(id:String): Content
+    getAllContents(filter:PageFilter): PageContent
+    getAllEmptyAltNews(filter: PageFilter): PageContent
+    getNewsBySource(source:String,filter:PageFilter): PageContent
+    getNewsBySourceAndType(source:String, type : String ,filter: PageFilter) : PageContent
+    searchNews(title:String,filter:PageFilter) : PageContent
+
+    # admin feature
+    getAdminById(id:Int) : UserDto
+    getUnVerifyAdmin(filter: PageFilter) : PageUser
 }
 
 type Mutation {
-    deleteContent(id:String): News
-    updateImageContent(id:String,imageText:[ImageText]) : News
+    # content feature
+    deleteContent(id:String): Content
+#    updateImageContent(id:String,imageText:[ImageText]) : News
+
+    # admin feature
+    updateAdmin(id:Int,admin:UserInput) : UserDto
+    verifyAdmin(id:Int,reason:String,status:String) : UserDto
 }

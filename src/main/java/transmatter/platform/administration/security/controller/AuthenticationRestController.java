@@ -1,9 +1,10 @@
 package transmatter.platform.administration.security.controller;
 
-import transmatter.platform.administration.security.entity.User;
+import org.springframework.data.mongodb.util.BsonUtils;
+import transmatter.platform.administration.email.service.EmailService;
+import transmatter.platform.administration.security.entity.Admin;
 import transmatter.platform.administration.security.repository.AuthorityRepository;
-import transmatter.platform.administration.security.repository.UserRepository;
-import transmatter.platform.administration.security.service.UserService;
+import transmatter.platform.administration.security.service.AdminService;
 import transmatter.platform.administration.utils.JwtTokenUtil;
 import transmatter.platform.administration.utils.TransmatterMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,7 +23,9 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.web.bind.annotation.*;
 import transmatter.platform.administration.security.entity.JwtUser;
 
+import javax.mail.MessagingException;
 import javax.servlet.http.HttpServletRequest;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -43,10 +46,10 @@ public class AuthenticationRestController {
     private UserDetailsService userDetailsService;
 
     @Autowired
-    UserService userService;
+    AdminService userService;
 
     @Autowired
-    UserRepository userRepository;
+    EmailService emailService;
 
     @Autowired
     AuthorityRepository authorityRepository;
@@ -67,9 +70,9 @@ public class AuthenticationRestController {
         final String token = jwtTokenUtil.generateToken(userDetails, device);
         Map result = new HashMap();
         result.put("token", token);
-        User user = userRepository.findByUsername(userDetails.getUsername());
-        if (user != null) {
-            result.put("user", TransmatterMapper.INSTANCE.getUserAuthDto( user ));
+        Admin admin = userService.getAdminByUsername(userDetails.getUsername());
+        if (admin != null) {
+            result.put("user", TransmatterMapper.INSTANCE.getAdminAuthDto(admin));
         }
         return ResponseEntity.ok(result);
     }
@@ -89,8 +92,8 @@ public class AuthenticationRestController {
     }
 
     @PostMapping("${jwt.route.register.path}")
-    public ResponseEntity<?> addUser(@RequestBody JwtAuthenticationRequest authenticationRequest, Device device) throws AuthenticationException {
-        User user = new User();
+    public ResponseEntity<?> addUser(@RequestBody JwtAuthenticationRequest authenticationRequest, Device device) throws AuthenticationException, MessagingException, IOException {
+        Admin admin = new Admin();
         HttpHeaders responseHeader = new HttpHeaders();
         if(!userService.userValidation(authenticationRequest)){
             return new ResponseEntity<>(
@@ -99,8 +102,9 @@ public class AuthenticationRestController {
                     HttpStatus.BAD_REQUEST
             );
         } else {
-            user = userService.addUser(authenticationRequest);
-            return ResponseEntity.ok(TransmatterMapper.INSTANCE.getUserDto(user));
+            admin = userService.addUser(authenticationRequest);
+            emailService.sendMail(admin.getEmail());
+            return ResponseEntity.ok(TransmatterMapper.INSTANCE.getAdminDto(admin));
         }
 
     }

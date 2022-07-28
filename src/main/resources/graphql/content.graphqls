@@ -1,12 +1,20 @@
-type News {
+type Content {
     id : String
     source : String
     author : String
     public_date : String
     title : String
     content : String
+    type : String
     images : [Image]
     comment : [Comment]
+}
+
+type PageContent {
+    number : Int,
+    totalPages : Int,
+    totalElements : Int,
+    content : [Content]
 }
 
 type Comment {
