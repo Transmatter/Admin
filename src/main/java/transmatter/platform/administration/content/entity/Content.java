@@ -1,4 +1,4 @@
-package transmatter.platform.administration.news.entity;
+package transmatter.platform.administration.content.entity;
 
 import com.mysema.query.annotations.QueryEntity;
 import lombok.AllArgsConstructor;
@@ -9,7 +9,6 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.List;
-import java.util.ArrayList;
 
 @Data
 @Builder
@@ -17,7 +16,7 @@ import java.util.ArrayList;
 @NoArgsConstructor
 @QueryEntity
 @Document
-public class News {
+public class Content {
     @Id
     String id;
 
@@ -29,8 +28,4 @@ public class News {
     String type;
     List<Image> images;
     List<Comment> comment;
-
-     public List<News> getAllNews(){
-         return null;
-     }
 }

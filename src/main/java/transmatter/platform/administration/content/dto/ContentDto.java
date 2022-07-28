@@ -1,4 +1,4 @@
-package transmatter.platform.administration.news.dto;
+package transmatter.platform.administration.content.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -11,9 +11,8 @@ import java.util.List;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class NewsDto {
+public class ContentDto {
     String id;
-
     String source;
     String author;
     String public_date;

@@ -1,4 +1,4 @@
-type News {
+type Content {
     id : String
     source : String
     author : String
@@ -10,11 +10,11 @@ type News {
     comment : [Comment]
 }
 
-type PageNews {
+type PageContent {
     number : Int,
     totalPages : Int,
     totalElements : Int,
-    content : [News]
+    content : [Content]
 }
 
 type Comment {
