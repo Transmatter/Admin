@@ -20,7 +20,8 @@ type Query {
 type Mutation {
     # content feature
     deleteContent(id:String): Content
-#    updateImageContent(id:String,imageText:[ImageText]) : News
+    updateImageContent(id:String,imageText:[ImageText]) : Content
+    updateContent(id:String,content:ContentInput) : Content
 
     # admin feature
     updateAdmin(id:Int,admin:UserInput) : UserDto
