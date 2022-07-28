@@ -1,4 +1,4 @@
-package transmatter.platform.administration.news.exception;
+package transmatter.platform.administration.content.exception;
 
 import graphql.ErrorClassification;
 import graphql.ErrorType;
@@ -9,11 +9,11 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class NewsNotFoundException  extends RuntimeException implements GraphQLError {
+public class ContentIsNullException extends RuntimeException implements GraphQLError {
     String id;
 
-    public NewsNotFoundException(String id){
-        super(String.format("News id %s is not found",id));
+    public ContentIsNullException(String id){
+        super("News is null");
         this.id = id;
     }
 
@@ -31,9 +31,9 @@ public class NewsNotFoundException  extends RuntimeException implements GraphQLE
     public Map<String, Object> getExtensions() {
         Map<String, Object> extension = new HashMap<>();
 
-        extension.put("error_code", 320);
-        extension.put("message", String.format("The News id: %s that you looking for, does not exists",id));
-        extension.put("displayMessage", String.format("News id: %s does not exist",id));
+        extension.put("error_code", 000);
+        extension.put("message", "News is null");
+        extension.put("displayMessage", "News is null");
         return extension;
     }
 }
