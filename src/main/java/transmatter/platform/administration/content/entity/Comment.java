@@ -1,4 +1,4 @@
-package transmatter.platform.administration.news.dto;
+package transmatter.platform.administration.content.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -10,9 +10,9 @@ import java.util.List;
 
 @Data
 @Builder
-@NoArgsConstructor
 @AllArgsConstructor
-public class CommentDto {
+@NoArgsConstructor
+public class Comment {
     String author;
     String content;
     String time;

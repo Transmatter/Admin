@@ -4,12 +4,13 @@ schema {
 }
 
 type Query {
-    # news feature
-    getContent(id:String): News
-    getAllContents(filter:PageFilter): PageNews
-    getAllEmptyAltNews(filter: PageFilter): PageNews
-    getNewsBySource(source:String,filter:PageFilter): PageNews
-    searchNews(title:String,filter:PageFilter) : PageNews
+    # content feature
+    getContent(id:String): Content
+    getAllContents(filter:PageFilter): PageContent
+    getAllEmptyAltNews(filter: PageFilter): PageContent
+    getNewsBySource(source:String,filter:PageFilter): PageContent
+    getNewsBySourceAndType(source:String, type : String ,filter: PageFilter) : PageContent
+    searchNews(title:String,filter:PageFilter) : PageContent
 
     # admin feature
     getAdminById(id:Int) : UserDto
@@ -17,9 +18,9 @@ type Query {
 }
 
 type Mutation {
-    # news feature
-    deleteContent(id:String): News
-    updateImageContent(id:String,imageText:[ImageText]) : News
+    # content feature
+    deleteContent(id:String): Content
+#    updateImageContent(id:String,imageText:[ImageText]) : News
 
     # admin feature
     updateAdmin(id:Int,admin:UserInput) : UserDto

@@ -1,15 +1,19 @@
-package transmatter.platform.administration.news.dto;
+package transmatter.platform.administration.content.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.lang.Nullable;
 
 @Data
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class ImageDto {
+public class Image {
+    @Nullable
     String url;
-    String alt;
+
+    @Builder.Default
+    String alt = "";
 }
