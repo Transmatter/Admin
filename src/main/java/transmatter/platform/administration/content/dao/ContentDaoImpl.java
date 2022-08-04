@@ -15,6 +15,7 @@ public class ContentDaoImpl implements ContentDao {
     @Autowired
     ContentRepository contentRepository;
 
+    // =================== progress 1 ======================== //
     @Override
     public Content getContent(String id) {
         return contentRepository.findById(id).orElse(null);
@@ -35,11 +36,6 @@ public class ContentDaoImpl implements ContentDao {
         contentRepository.deleteById(id);
     }
 
-//    @Override
-//    public News updateContent(News news) {
-//        return newsRepository.save(news);
-//    }
-
     @Override
     public Page<Content> searchContent(String title, PageRequest page) {
         return contentRepository.findByTitleContaining(title,page);
@@ -53,6 +49,13 @@ public class ContentDaoImpl implements ContentDao {
     @Override
     public Page<Content> getBySourceAndType(String source, String type, PageRequest page) {
         return contentRepository.findBySourceAndType(source,type,page);
+    }
+
+    // =========================== progress 2 ========================= //
+
+    @Override
+    public Content updateContent(Content news) {
+        return contentRepository.save(news);
     }
 
     @Override
