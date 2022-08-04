@@ -34,5 +34,6 @@ input ImageText {
 }
 
 input ContentInput {
+    title : String
     content: String
 }

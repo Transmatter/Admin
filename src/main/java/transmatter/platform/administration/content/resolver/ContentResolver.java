@@ -57,10 +57,10 @@ public class ContentResolver implements GraphQLQueryResolver, GraphQLMutationRes
     }
 
     Content updateImageContent(String id, List<Image> imageText) {
-        return null;
+        return contentService.updateImageContent(id,imageText);
     }
 
     Content updateContent(String id, ContentRequest content) {
-        return null;
+        return contentService.updateContent(id,content.getTitle(),content.getContent());
     }
 }

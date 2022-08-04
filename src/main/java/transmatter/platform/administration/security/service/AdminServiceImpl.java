@@ -31,16 +31,7 @@ public class AdminServiceImpl implements AdminService {
 
     @Override
     public Page<Admin> getUnVerifyAdmin(PageRequest page) {
-        List<Admin> admins = adminDao.getAllUser();
-        List<Admin> unVerifyAdmin = new ArrayList<>();
-        for(Admin admin : admins) {
-            if(admin.getStatus() == VerifyStatus.NOT_VERIFIED) {
-                unVerifyAdmin.add(admin);
-            }
-        }
-        final int start = (int)page.getOffset();
-        final int end = Math.min((start + page.getPageSize()), unVerifyAdmin.size());
-        return new PageImpl<>(unVerifyAdmin.subList(start,end),page, unVerifyAdmin.size());
+        return adminDao.getUnverifyAdmin(page) ;
     }
 
     @Override
