@@ -57,12 +57,19 @@ public class ContentServiceImpl implements ContentService {
 
     @Override
     public Content updateImageContent(String id, List<Image> ImageText) {
-        return null;
+        Content content = contentDao.getContent(id);
+        for(int i=0;i<content.getImages().size();i++){
+            content.getImages().get(i).setAlt(ImageText.get(i).getAlt());
+        }
+        return contentDao.updateContent(content);
     }
 
     @Override
     public Content updateContent(String id, String title, String text) {
-        return null;
+        Content content = contentDao.getContent(id);
+        content.setTitle(title);
+        content.setContent(text);
+        return contentDao.updateContent(content);
     }
 
     @Override
