@@ -31,7 +31,8 @@ spring:
     port: 587
   data:
     mongodb:
-      uri: mongodb+srv://oat:JustOat5039@cluster0.wj65o.mongodb.net/mock_test_data
+      uri: mongodb+srv://oat:JustOat5039@cluster0.wj65o.mongodb.net
+      database: mock_remote_data
 jwt:
   header: Authorization
   secret: mySecret
