@@ -32,3 +32,8 @@ type Image {
 input ImageText {
     alt : String
 }
+
+input ContentInput {
+    title : String
+    content: String
+}
