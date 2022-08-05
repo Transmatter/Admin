@@ -1,6 +1,5 @@
 package transmatter.platform.administration.content.entity;
 
-import com.mysema.query.annotations.QueryEntity;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -14,7 +13,6 @@ import java.util.List;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-@QueryEntity
 @Document
 public class Content {
     @Id

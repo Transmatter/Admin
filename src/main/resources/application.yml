@@ -32,7 +32,7 @@ spring:
   data:
     mongodb:
       uri: mongodb+srv://oat:JustOat5039@cluster0.wj65o.mongodb.net
-      database: mock_remote_data
+      database: mock_test_data
 jwt:
   header: Authorization
   secret: mySecret
