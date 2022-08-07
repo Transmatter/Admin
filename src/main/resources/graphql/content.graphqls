@@ -27,6 +27,7 @@ type Comment {
 type Image {
     url : String
     alt : String
+    status : String
 }
 
 input ImageText {

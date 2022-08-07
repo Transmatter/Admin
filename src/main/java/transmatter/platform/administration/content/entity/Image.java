@@ -16,4 +16,7 @@ public class Image {
 
     @Builder.Default
     String alt = "";
+
+    @Builder.Default
+    ImageStatus status = ImageStatus.NA;
 }
