@@ -1,12 +1,9 @@
 package transmatter.platform.administration.contents;
 
-import lombok.RequiredArgsConstructor;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.http.HttpStatus;
-import org.springframework.web.server.ResponseStatusException;
 import transmatter.platform.administration.content.entity.Content;
 import transmatter.platform.administration.content.exception.ContentNotFoundException;
 import transmatter.platform.administration.content.service.ContentService;

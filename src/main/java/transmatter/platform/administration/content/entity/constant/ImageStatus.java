@@ -1,4 +1,4 @@
-package transmatter.platform.administration.content.entity;
+package transmatter.platform.administration.content.entity.constant;
 
 public enum ImageStatus {
     NA("ไม่ทราบสถานะ"),COMPLETE("สมบรูณ์"),INCOMPLETE("ไม่สมบูรณ์"),EMPTY("ว่าง");
