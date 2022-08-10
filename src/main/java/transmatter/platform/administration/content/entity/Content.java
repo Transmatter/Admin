@@ -6,7 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
-import transmatter.platform.administration.content.entity.constant.ContentStatus;
+import org.springframework.lang.Nullable;
 
 import java.util.List;
 
@@ -31,6 +31,9 @@ public class Content {
     @Builder.Default
     ContentStatus approveStatus = ContentStatus.NA;
 
+    @Nullable
     String approvedDate;
+
+    @Nullable
     String approvedBy;
 }

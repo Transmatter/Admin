@@ -5,7 +5,6 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.lang.Nullable;
-import transmatter.platform.administration.content.entity.constant.ImageStatus;
 
 @Data
 @Builder
@@ -21,7 +20,9 @@ public class Image {
     @Builder.Default
     ImageStatus verifyStatus = ImageStatus.NA;
 
+    @Nullable
     String verifiedBy;
 
+    @Nullable
     String verifiedDate;
 }

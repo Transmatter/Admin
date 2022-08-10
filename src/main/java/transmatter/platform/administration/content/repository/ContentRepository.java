@@ -4,7 +4,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import transmatter.platform.administration.content.entity.Content;
-import transmatter.platform.administration.content.entity.constant.ContentStatus;
+import transmatter.platform.administration.content.entity.ContentStatus;
 
 public interface ContentRepository extends MongoRepository<Content,String> {
     // progress 1
