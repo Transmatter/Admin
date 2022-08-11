@@ -7,7 +7,6 @@ import org.springframework.stereotype.Service;
 import transmatter.platform.administration.content.dao.ContentDao;
 import transmatter.platform.administration.content.entity.Content;
 import transmatter.platform.administration.content.entity.Image;
-import transmatter.platform.administration.content.exception.ContentNotFoundException;
 
 import java.util.List;
 
@@ -20,9 +19,7 @@ public class ContentServiceImpl implements ContentService {
 
     @Override
     public Content getContent(String id) {
-        Content content = contentDao.getContent(id);
-        if(content == null) throw new ContentNotFoundException(id);
-        return content;
+        return contentDao.getContent(id);
     }
 
     @Override
