@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.lang.Nullable;
 
 import java.util.List;
 
@@ -20,10 +21,19 @@ public class Content {
 
     String source;
     String author;
-    String public_date;
+    String publicDate;
     String title;
     String content;
     String type;
     List<Image> images;
     List<Comment> comment;
+
+    @Builder.Default
+    ContentStatus approveStatus = ContentStatus.NA;
+
+    @Nullable
+    String approvedDate;
+
+    @Nullable
+    String approvedBy;
 }

@@ -7,7 +7,6 @@ import org.springframework.stereotype.Service;
 import transmatter.platform.administration.content.dao.ContentDao;
 import transmatter.platform.administration.content.entity.Content;
 import transmatter.platform.administration.content.entity.Image;
-import transmatter.platform.administration.content.exception.ContentNotFoundException;
 
 import java.util.List;
 
@@ -16,13 +15,11 @@ public class ContentServiceImpl implements ContentService {
     @Autowired
     ContentDao contentDao;
 
-    // ================ progress 1 ======================
+    // ================ progress 1 ================================
 
     @Override
     public Content getContent(String id) {
-        Content content = contentDao.getContent(id);
-        if(content == null) throw new ContentNotFoundException(id);
-        return content;
+        return contentDao.getContent(id);
     }
 
     @Override
@@ -51,9 +48,9 @@ public class ContentServiceImpl implements ContentService {
     public Page<Content> getNewsBySourceAndType(String source, String type, PageRequest page) {
         return contentDao.getBySourceAndType(source,type,page);
     }
-    // ================ progress 1 ======================
+    // ================ progress 1 =================================
 
-    // ================ progress 2 ======================
+    // ================ progress 2 admin part ======================
 
     @Override
     public Content updateImageContent(String id, List<Image> ImageText) {
@@ -75,6 +72,33 @@ public class ContentServiceImpl implements ContentService {
     @Override
     public Page<Content> getAllEmptyAltNews(PageRequest page) {
         return contentDao.getAllEmptyAltNews(page);
+    }
+
+    @Override
+    public Page<Content> getContentByDate(String start, String end, PageRequest page) {
+        return null;
+    }
+
+    // ================== progress 2 vi part ======================
+
+    @Override
+    public Page<Content> getAllApproveContent(PageRequest page) {
+        return null;
+    }
+
+    @Override
+    public Page<Content> getApproveContentByDate(String start, String end, PageRequest page) {
+        return null;
+    }
+
+    @Override
+    public Page<Content> searchOnlyApproveContent(String title, PageRequest page) {
+        return null;
+    }
+
+    @Override
+    public Page<Content> getOnlyApproveContentBySource(String source, String type, PageRequest page) {
+        return null;
     }
 
     // ================ progress 2 ======================
