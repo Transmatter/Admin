@@ -8,15 +8,21 @@ import java.util.List;
 
 public interface ContentDao {
     // progress 1
-    Content getContent(String id);
-    Page<Content> getAllContents(PageRequest page);
-    List<Content> getAllContents();
-    void deleteContent(String id);
-    Page<Content> searchContent(String title, PageRequest page);
-    Page<Content> getBySource(String source, PageRequest page);
-    Page<Content> getBySourceAndType(String source, String type, PageRequest page);
+    Content getContent(String id); // both admin and vi
+    Page<Content> getAllContents(PageRequest page); // both admin and vi
+    List<Content> getAllContents(); // both admin and vi
+    void deleteContent(String id); // only admin
+    Page<Content> searchContent(String title, PageRequest page); // both admin and vi
+    Page<Content> getBySource(String source, PageRequest page); // both admin and vi
+    Page<Content> getBySourceAndType(String source, String type, PageRequest page); // both admin and vi
 
     // progress 2
-    Content updateContent(Content news);
-    Page<Content> getAllEmptyAltNews(PageRequest page);
+    Content updateContent(Content news); // only admin
+    Page<Content> getAllEmptyAltNews(PageRequest page); // only admin
+    Page<Content> getContentByDate(String start, String end, PageRequest page); // only admin
+
+    Page<Content> getAllApproveContent(PageRequest page); // only vi
+    Page<Content> getApproveContentByDate(String start, String end, PageRequest page); // only vi
+    Page<Content> searchOnlyApproveContent(String title, PageRequest page); // only vi
+    Page<Content> getOnlyApproveContentBySource(String source,String type, PageRequest page); // only vi
 }
