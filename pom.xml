@@ -137,6 +137,13 @@
             <artifactId>aspectjweaver</artifactId>
             <version>1.9.9.1</version>
         </dependency>
+        <!-- https://mvnrepository.com/artifact/org.mariadb.jdbc/mariadb-java-client -->
+        <dependency>
+            <groupId>org.mariadb.jdbc</groupId>
+            <artifactId>mariadb-java-client</artifactId>
+            <version>3.0.7</version>
+        </dependency>
+
     </dependencies>
     <repositories>
         <repository>

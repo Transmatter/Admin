@@ -47,7 +47,7 @@ public class ContentResolver implements GraphQLQueryResolver, GraphQLMutationRes
     }
 
     Page<Content> getNewsBySourceAndType(String source, String type, PageFilter filter){
-        return contentService.getNewsBySourceAndType(source,type,PageRequest.of(filter.getPage(),filter.getSize()));
+        return contentService.getNewsBySourceAndType(source,type,PageRequest.of(filter.getPage()-1,filter.getSize()));
     }
 
 
@@ -62,5 +62,27 @@ public class ContentResolver implements GraphQLQueryResolver, GraphQLMutationRes
 
     Content updateContent(String id, ContentRequest content) {
         return contentService.updateContent(id,content.getTitle(),content.getContent());
+    }
+
+    Page<Content> getContentByDate(String start, String end, PageFilter filter) {
+        return contentService.getContentByDate(start,end,PageRequest.of(filter.getPage()-1,filter.getSize()));
+    }
+
+    // ============================ vi ============================
+
+    Page<Content> getAllApprovedContent(PageFilter filter) {
+        return contentService.getAllApproveContent(PageRequest.of(filter.getPage()-1,filter.getSize()));
+    }
+
+    Page<Content> getAllApprovedContentByDate(String start, String end, PageFilter filter) {
+        return contentService.getApproveContentByDate(start,end,PageRequest.of(filter.getPage()-1,filter.getSize()));
+    }
+
+    Page<Content> getOnlyApprovedContentBySource(String source, String type, PageFilter filter) {
+        return contentService.getOnlyApproveContentBySource(source,type,PageRequest.of(filter.getPage()-1,filter.getSize()));
+    }
+
+    Page<Content> searchOnlyApprovedContent(String title, PageFilter filter) {
+        return contentService.searchOnlyApproveContent(title,PageRequest.of(filter.getPage()-1,filter.getSize()));
     }
 }

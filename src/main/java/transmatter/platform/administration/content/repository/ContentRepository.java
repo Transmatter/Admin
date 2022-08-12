@@ -11,6 +11,7 @@ public interface ContentRepository extends MongoRepository<Content,String> {
     // admin feature
     Page<Content> findByTitleContaining(String title, Pageable page);
     Page<Content> findBySourceAndType(String source, String type, Pageable page);
+    Page<Content> findBySource(String source, Pageable page);
 
     // =================================================================================
 

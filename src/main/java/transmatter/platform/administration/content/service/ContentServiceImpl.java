@@ -76,29 +76,29 @@ public class ContentServiceImpl implements ContentService {
 
     @Override
     public Page<Content> getContentByDate(String start, String end, PageRequest page) {
-        return null;
+        return contentDao.getContentByDate(start,end,page);
     }
 
     // ================== progress 2 vi part ======================
 
     @Override
     public Page<Content> getAllApproveContent(PageRequest page) {
-        return null;
+        return contentDao.getAllApproveContent(page);
     }
 
     @Override
     public Page<Content> getApproveContentByDate(String start, String end, PageRequest page) {
-        return null;
+        return contentDao.getApproveContentByDate(start,end,page);
     }
 
     @Override
     public Page<Content> searchOnlyApproveContent(String title, PageRequest page) {
-        return null;
+        return contentDao.searchOnlyApproveContent(title,page);
     }
 
     @Override
     public Page<Content> getOnlyApproveContentBySource(String source, String type, PageRequest page) {
-        return null;
+        return contentDao.getOnlyApproveContentBySource(source,type,page);
     }
 
     // ================ progress 2 ======================

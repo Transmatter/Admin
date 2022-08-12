@@ -44,7 +44,7 @@ public class ContentDaoImpl implements ContentDao {
 
     @Override
     public Page<Content> getBySource(String source, PageRequest page) {
-        return null;
+        return contentRepository.findBySource(source,page);
     }
 
     @Override
