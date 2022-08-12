@@ -20,5 +20,12 @@ public interface ContentService {
     Content updateImageContent(String id, List<Image> ImageText);
     Content updateContent(String id, String title, String text);
     Page<Content> getAllEmptyAltNews(PageRequest page);
+
+    Page<Content> getContentByDate(String start, String end, PageRequest page); // only admin
+
+    Page<Content> getAllApproveContent(PageRequest page); // only vi
+    Page<Content> getApproveContentByDate(String start, String end, PageRequest page); // only vi
+    Page<Content> searchOnlyApproveContent(String title, PageRequest page); // only vi
+    Page<Content> getOnlyApproveContentBySource(String source,String type, PageRequest page); // only vi
 }
 
