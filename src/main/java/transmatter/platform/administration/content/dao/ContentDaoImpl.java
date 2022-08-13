@@ -44,7 +44,7 @@ public class ContentDaoImpl implements ContentDao {
 
     @Override
     public Page<Content> getBySource(String source, PageRequest page) {
-        return null;
+        return contentRepository.findBySource(source,page);
     }
 
     @Override
@@ -61,7 +61,7 @@ public class ContentDaoImpl implements ContentDao {
 
     @Override
     public Page<Content> getAllEmptyAltNews(PageRequest page) {
-        return contentRepository.findByImages_AltIsNull(page);
+        return contentRepository.findByApproveStatus(ContentStatus.INCOMPLETE,page);
     }
 
     @Override
@@ -88,5 +88,10 @@ public class ContentDaoImpl implements ContentDao {
     @Override
     public Page<Content> getOnlyApproveContentBySource(String source, String type, PageRequest page) {
         return contentRepository.findBySourceAndTypeAndApproveStatus(source,type,ContentStatus.COMPLETE, page);
+    }
+
+    @Override
+    public Page<Content> getApproveContentBySource(String source, PageRequest page) {
+        return contentRepository.findBySourceAndApproveStatus(source,ContentStatus.COMPLETE, page);
     }
 }
