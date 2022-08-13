@@ -17,7 +17,6 @@ public interface ContentRepository extends MongoRepository<Content,String> {
 
     // progress 2
     // admin feature
-    Page<Content> findByImages_AltIsNull(Pageable page);
     Page<Content> findByPublicDateBetween(String start, String end, Pageable page);
     Page<Content> findByApproveStatus(ContentStatus status, Pageable page);
 
