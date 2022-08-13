@@ -6,6 +6,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Repository;
 import transmatter.platform.administration.content.entity.Content;
+import transmatter.platform.administration.content.entity.ContentStatus;
 import transmatter.platform.administration.content.repository.ContentRepository;
 
 import java.util.List;
@@ -15,6 +16,7 @@ public class ContentDaoImpl implements ContentDao {
     @Autowired
     ContentRepository contentRepository;
 
+    // =================== progress 1 ======================== //
     @Override
     public Content getContent(String id) {
         return contentRepository.findById(id).orElse(null);
@@ -35,11 +37,6 @@ public class ContentDaoImpl implements ContentDao {
         contentRepository.deleteById(id);
     }
 
-//    @Override
-//    public News updateContent(News news) {
-//        return newsRepository.save(news);
-//    }
-
     @Override
     public Page<Content> searchContent(String title, PageRequest page) {
         return contentRepository.findByTitleContaining(title,page);
@@ -55,8 +52,46 @@ public class ContentDaoImpl implements ContentDao {
         return contentRepository.findBySourceAndType(source,type,page);
     }
 
+    // =========================== progress 2 admin part ========================= //
+
+    @Override
+    public Content updateContent(Content news) {
+        return contentRepository.save(news);
+    }
+
     @Override
     public Page<Content> getAllEmptyAltNews(PageRequest page) {
-        return contentRepository.findByImages_AltIsNull(page);
+        return contentRepository.findByApproveStatus(ContentStatus.INCOMPLETE,page);
+    }
+
+    @Override
+    public Page<Content> getContentByDate(String start, String end, PageRequest page) {
+        return contentRepository.findByPublicDateBetween(start,end,page);
+    }
+
+    // ========================== progress 2 vi part =================================== //
+    @Override
+    public Page<Content> getAllApproveContent(PageRequest page) {
+        return contentRepository.findByApproveStatus(ContentStatus.COMPLETE,page);
+    }
+
+    @Override
+    public Page<Content> getApproveContentByDate(String start, String end, PageRequest page) {
+        return contentRepository.findByApprovedDateBetween(start,end,page);
+    }
+
+    @Override
+    public Page<Content> searchOnlyApproveContent(String title, PageRequest page) {
+        return contentRepository.findByTitleContainingAndApproveStatus(title,ContentStatus.COMPLETE,page);
+    }
+
+    @Override
+    public Page<Content> getOnlyApproveContentBySource(String source, String type, PageRequest page) {
+        return contentRepository.findBySourceAndTypeAndApproveStatus(source,type,ContentStatus.COMPLETE, page);
+    }
+
+    @Override
+    public Page<Content> getApproveContentBySource(String source, PageRequest page) {
+        return contentRepository.findBySourceAndApproveStatus(source,ContentStatus.COMPLETE, page);
     }
 }

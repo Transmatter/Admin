@@ -1,12 +1,12 @@
 package transmatter.platform.administration.content.entity;
 
-import com.mysema.query.annotations.QueryEntity;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.lang.Nullable;
 
 import java.util.List;
 
@@ -14,7 +14,6 @@ import java.util.List;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-@QueryEntity
 @Document
 public class Content {
     @Id
@@ -22,10 +21,19 @@ public class Content {
 
     String source;
     String author;
-    String public_date;
+    String publicDate;
     String title;
     String content;
     String type;
     List<Image> images;
     List<Comment> comment;
+
+    @Builder.Default
+    ContentStatus approveStatus = ContentStatus.NA;
+
+    @Nullable
+    String approvedDate;
+
+    @Nullable
+    String approvedBy;
 }

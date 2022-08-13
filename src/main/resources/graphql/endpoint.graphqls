@@ -4,23 +4,32 @@ schema {
 }
 
 type Query {
-    # content feature
+    # content feature progress 1
     getContent(id:String): Content
     getAllContents(filter:PageFilter): PageContent
-    getAllEmptyAltNews(filter: PageFilter): PageContent
-    getNewsBySource(source:String,filter:PageFilter): PageContent
     getNewsBySourceAndType(source:String, type : String ,filter: PageFilter) : PageContent
     searchNews(title:String,filter:PageFilter) : PageContent
 
-    # admin feature
+    # admin feature progress 1
     getAdminById(id:Int) : UserDto
     getUnVerifyAdmin(filter: PageFilter) : PageUser
+    getAllEmptyAltNews(filter: PageFilter): PageContent
+    getContentByDate(start:String, end: String,filter:PageFilter): PageContent
+
+    # vi feature progress 2
+    getAllApprovedContent(filter: PageFilter): PageContent
+    getAllApprovedContentByDate(start: String, end: String, filter: PageFilter): PageContent
+    searchOnlyApprovedContent(title: String, filter: PageFilter): PageContent
+    getOnlyApprovedContentBySource(source: String,type: String, filter: PageFilter): PageContent
 }
 
 type Mutation {
-    # content feature
+    # content feature progress 1
     deleteContent(id:String): Content
-#    updateImageContent(id:String,imageText:[ImageText]) : News
+
+    # content feature progress 2
+    updateImageContent(id:String,imageText:[ImageText]) : Content
+    updateContent(id:String,content:ContentInput) : Content
 
     # admin feature
     updateAdmin(id:Int,admin:UserInput) : UserDto
