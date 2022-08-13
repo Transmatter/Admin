@@ -5,6 +5,7 @@ import org.springframework.data.domain.PageRequest;
 import transmatter.platform.administration.content.entity.Content;
 import transmatter.platform.administration.content.entity.Image;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 public interface ContentService {
@@ -13,11 +14,10 @@ public interface ContentService {
     Page<Content> getAllContents(PageRequest page);
     Content deleteContent(String id);
     Page<Content> searchNews(String title, PageRequest page);
-    Page<Content> getNewsBySource(String source, PageRequest page);
     Page<Content> getNewsBySourceAndType(String source, String type, PageRequest page);
 
     // progress 2
-    Content updateImageContent(String id, List<Image> ImageText);
+    Content updateImageContent(String id, List<Image> ImageText, HttpServletRequest header);
     Content updateContent(String id, String title, String text);
     Page<Content> getAllEmptyAltNews(PageRequest page);
 

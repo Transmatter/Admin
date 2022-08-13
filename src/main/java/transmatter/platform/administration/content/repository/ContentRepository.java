@@ -25,6 +25,7 @@ public interface ContentRepository extends MongoRepository<Content,String> {
     // progress 2
     // vi feature
     Page<Content> findByTitleContainingAndApproveStatus(String title, ContentStatus approveStatus, Pageable page);
+    Page<Content> findBySourceAndApproveStatus(String source, ContentStatus approveStatus, Pageable page);
     Page<Content> findBySourceAndTypeAndApproveStatus(String source, String type, ContentStatus approveStatus, Pageable page);
     Page<Content> findByApprovedDateBetween(String start, String end, Pageable page);
 }

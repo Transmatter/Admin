@@ -7,7 +7,6 @@ type Query {
     # content feature progress 1
     getContent(id:String): Content
     getAllContents(filter:PageFilter): PageContent
-    getNewsBySource(source:String,filter:PageFilter): PageContent
     getNewsBySourceAndType(source:String, type : String ,filter: PageFilter) : PageContent
     searchNews(title:String,filter:PageFilter) : PageContent
 
