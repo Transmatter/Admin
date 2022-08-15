@@ -20,7 +20,7 @@ public class AdministrationApplication {
             @Override
             public void addCorsMappings(CorsRegistry registry){
                 registry.addMapping("/**")
-                        .allowedOrigins("http://52.230.104.188")
+                        .allowedOrigins("http://52.230.104.188","http://localhost:3300")
                         .exposedHeaders("x-total-count");
             }
         };
