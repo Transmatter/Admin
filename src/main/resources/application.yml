@@ -3,7 +3,7 @@ spring:
     name: "Transmatter Platform Administration Subsystem"
   profiles:
     active:
-      - db
+      - dev-release
   datasource:
     url: jdbc:mysql://52.230.104.188:3306/transmatter_admin?createDatabaseIfNotExist=true&autoReconnect=true&characterEncoding=UTF-8&allowMultiQueries=true&useSSL=false&useUnicode=true&characterEncoding=UTF-8
     driver-class-name: com.mysql.cj.jdbc.Driver
