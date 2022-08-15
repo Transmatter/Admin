@@ -53,4 +53,4 @@ jobs:
 #          cd project-backend
 #          docker-compose -H ${{ secrets.DOCKER_HOST }} down
 #          docker-compose -H ${{ secrets.DOCKER_HOST }} pull
-#          docker-compose -H ${{ secrets.DOCKER_HOST }} up -d
+#          docker-compose -H ${{ secrets.DOCKER_HOST }} up -d
