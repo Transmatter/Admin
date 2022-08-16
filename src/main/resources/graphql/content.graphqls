@@ -6,6 +6,7 @@ type Content {
     title : String
     content : String
     type : String
+    category: String
     images : [Image]
     comment : [Comment]
 

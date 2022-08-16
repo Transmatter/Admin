@@ -5,10 +5,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import transmatter.platform.administration.content.dao.ContentDao;
-import transmatter.platform.administration.content.entity.Content;
-import transmatter.platform.administration.content.entity.ContentStatus;
-import transmatter.platform.administration.content.entity.Image;
-import transmatter.platform.administration.content.entity.ImageStatus;
+import transmatter.platform.administration.content.entity.*;
 import transmatter.platform.administration.security.dao.AdminDao;
 import transmatter.platform.administration.security.entity.Admin;
 import transmatter.platform.administration.utils.JwtTokenUtil;
@@ -75,7 +72,7 @@ public class ContentServiceImpl implements ContentService {
             }
         }
         if(checkContentImage(content)){
-            content.setApproveStatus(ContentStatus.COMPLETE);
+            content.setApproveStatus(ContentStatus.APPROVE);
             content.setApprovedBy(adminName);
             content.setApprovedDate(date);
         }
@@ -113,6 +110,11 @@ public class ContentServiceImpl implements ContentService {
     @Override
     public Page<Content> getContentByDate(String start, String end, PageRequest page) {
         return contentDao.getContentByDate(start,end,page);
+    }
+
+    @Override
+    public Page<Content> getContentByType(ContentType type, PageRequest page) {
+        return contentDao.getContentType(type,page);
     }
 
     // ================== progress 2 vi part ======================
