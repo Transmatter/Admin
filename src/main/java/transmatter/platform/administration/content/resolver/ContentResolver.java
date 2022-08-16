@@ -11,6 +11,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 import transmatter.platform.administration.content.entity.Content;
 import transmatter.platform.administration.content.entity.ContentRequest;
+import transmatter.platform.administration.content.entity.ContentType;
 import transmatter.platform.administration.content.entity.Image;
 import transmatter.platform.administration.content.service.ContentService;
 import transmatter.platform.administration.utils.PageFilter;
@@ -66,6 +67,10 @@ public class ContentResolver implements GraphQLQueryResolver, GraphQLMutationRes
         return contentService.getContentByDate(start,end,PageRequest.of(filter.getPage()-1,filter.getSize()));
     }
 
+    Page<Content> getContentByType(String type, PageFilter filter) {
+        return contentService.getContentByType(ContentType.valueOf(type),PageRequest.of(filter.getPage()-1,filter.getSize()));
+    }
+
     // ============================ vi ============================
 
     Page<Content> getAllApprovedContent(PageFilter filter) {
@@ -76,8 +81,8 @@ public class ContentResolver implements GraphQLQueryResolver, GraphQLMutationRes
         return contentService.getApproveContentByDate(start,end,PageRequest.of(filter.getPage()-1,filter.getSize()));
     }
 
-    Page<Content> getOnlyApprovedContentBySource(String source, String type, PageFilter filter) {
-        return contentService.getOnlyApproveContentBySource(source,type,PageRequest.of(filter.getPage()-1,filter.getSize()));
+    Page<Content> getOnlyApprovedContentBySource(String source, String category, PageFilter filter) {
+        return contentService.getOnlyApproveContentBySource(source,category,PageRequest.of(filter.getPage()-1,filter.getSize()));
     }
 
     Page<Content> searchOnlyApprovedContent(String title, PageFilter filter) {

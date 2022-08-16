@@ -24,12 +24,15 @@ public class Content {
     String publicDate;
     String title;
     String content;
-    String type;
+    String category;
     List<Image> images;
     List<Comment> comment;
 
     @Builder.Default
     ContentStatus approveStatus = ContentStatus.NA;
+
+    @Builder.Default
+    ContentType type = ContentType.NA;
 
     @Nullable
     String approvedDate;
