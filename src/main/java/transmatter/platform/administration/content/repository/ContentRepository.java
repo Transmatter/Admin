@@ -5,12 +5,13 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import transmatter.platform.administration.content.entity.Content;
 import transmatter.platform.administration.content.entity.ContentStatus;
+import transmatter.platform.administration.content.entity.ContentType;
 
 public interface ContentRepository extends MongoRepository<Content,String> {
     // progress 1
     // admin feature
     Page<Content> findByTitleContaining(String title, Pageable page);
-    Page<Content> findBySourceAndType(String source, String type, Pageable page);
+    Page<Content> findBySourceAndCategory(String source, String category, Pageable page);
     Page<Content> findBySource(String source, Pageable page);
 
     // =================================================================================
@@ -19,6 +20,7 @@ public interface ContentRepository extends MongoRepository<Content,String> {
     // admin feature
     Page<Content> findByPublicDateBetween(String start, String end, Pageable page);
     Page<Content> findByApproveStatus(ContentStatus status, Pageable page);
+    Page<Content> findByType(ContentType type, Pageable page);
 
 
     // progress 2

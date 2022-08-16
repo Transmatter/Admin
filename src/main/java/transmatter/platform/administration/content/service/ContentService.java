@@ -3,6 +3,8 @@ package transmatter.platform.administration.content.service;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import transmatter.platform.administration.content.entity.Content;
+import transmatter.platform.administration.content.entity.ContentStatus;
+import transmatter.platform.administration.content.entity.ContentType;
 import transmatter.platform.administration.content.entity.Image;
 
 import javax.servlet.http.HttpServletRequest;
@@ -22,6 +24,7 @@ public interface ContentService {
     Page<Content> getAllEmptyAltNews(PageRequest page);
 
     Page<Content> getContentByDate(String start, String end, PageRequest page); // only admin
+    Page<Content> getContentByType(ContentType type, PageRequest page); // only admin
 
     Page<Content> getAllApproveContent(PageRequest page); // only vi
     Page<Content> getApproveContentByDate(String start, String end, PageRequest page); // only vi
