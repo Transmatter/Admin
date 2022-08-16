@@ -1,6 +1,7 @@
 package transmatter.platform.administration.content.service;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
@@ -16,6 +17,7 @@ import java.util.Date;
 import java.util.List;
 
 @Service
+@Slf4j
 @RequiredArgsConstructor
 public class ContentServiceImpl implements ContentService {
     final ContentDao contentDao;
@@ -59,21 +61,21 @@ public class ContentServiceImpl implements ContentService {
     @Override
     public Content updateImageContent(String id, List<Image> ImageText, HttpServletRequest header) {
         Content content = contentDao.getContent(id);
-        Admin admin = getAdmin(header);
-        String adminName = admin.getFirstname() + " " + admin.getLastname();
+//        Admin admin = getAdmin(header);
+//        String adminName = admin.getFirstname() + " " + admin.getLastname();
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         String date = formatter.format(new Date());
         for(int i=0;i<content.getImages().size();i++){
             if(ImageText.get(i).getAlt() != null){
                 content.getImages().get(i).setAlt(ImageText.get(i).getAlt());
                 content.getImages().get(i).setVerifyStatus(ImageStatus.COMPLETE);
-                content.getImages().get(i).setVerifiedBy(adminName);
+                content.getImages().get(i).setVerifiedBy("Sahachan Tippimwong");
                 content.getImages().get(i).setVerifiedDate(date);
             }
         }
         if(checkContentImage(content)){
             content.setApproveStatus(ContentStatus.APPROVE);
-            content.setApprovedBy(adminName);
+            content.setApprovedBy("Sahachan Tippimwong");
             content.setApprovedDate(date);
         }
         return contentDao.updateContent(content);
