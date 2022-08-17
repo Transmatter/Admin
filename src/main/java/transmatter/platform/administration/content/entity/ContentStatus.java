@@ -1,7 +1,7 @@
 package transmatter.platform.administration.content.entity;
 
 public enum ContentStatus {
-    NA("ไม่"),COMPLETE("รองรับ"),INCOMPLETE("ไม่รองรับ");
+    NA("ไม่"),APPROVE("รองรับ"),NOT_APPROVE("ไม่รองรับ");
 
     String thaiName;
     ContentStatus(String thaiName){

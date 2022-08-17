@@ -7,7 +7,6 @@ type Query {
     # content feature progress 1
     getContent(id:String): Content
     getAllContents(filter:PageFilter): PageContent
-    getNewsBySource(source:String,filter:PageFilter): PageContent
     getNewsBySourceAndType(source:String, type : String ,filter: PageFilter) : PageContent
     searchNews(title:String,filter:PageFilter) : PageContent
 
@@ -15,13 +14,14 @@ type Query {
     getAdminById(id:Int) : UserDto
     getUnVerifyAdmin(filter: PageFilter) : PageUser
     getAllEmptyAltNews(filter: PageFilter): PageContent
-    getContentByDate(date:String,filter:PageFilter): PageContent
+    getContentByDate(start:String, end: String,filter:PageFilter): PageContent
+    getContentByType(type:String,filter:PageFilter): PageContent
 
     # vi feature progress 2
     getAllApprovedContent(filter: PageFilter): PageContent
     getAllApprovedContentByDate(start: String, end: String, filter: PageFilter): PageContent
     searchOnlyApprovedContent(title: String, filter: PageFilter): PageContent
-    getOnlyApprovedBySource(source: String, filter: PageFilter): PageContent
+    getOnlyApprovedContentBySource(source: String,category: String, filter: PageFilter): PageContent
 }
 
 type Mutation {

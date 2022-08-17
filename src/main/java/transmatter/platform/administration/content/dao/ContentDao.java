@@ -3,6 +3,7 @@ package transmatter.platform.administration.content.dao;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import transmatter.platform.administration.content.entity.Content;
+import transmatter.platform.administration.content.entity.ContentType;
 
 import java.util.List;
 
@@ -20,8 +21,10 @@ public interface ContentDao {
     Content updateContent(Content news); // only admin
     Page<Content> getAllEmptyAltNews(PageRequest page); // only admin
     Page<Content> getContentByDate(String start, String end, PageRequest page); // only admin
+    Page<Content> getContentType(ContentType type, PageRequest page); // only admin
 
     Page<Content> getAllApproveContent(PageRequest page); // only vi
+    Page<Content> getApproveContentBySource(String source, PageRequest page); // only vi
     Page<Content> getApproveContentByDate(String start, String end, PageRequest page); // only vi
     Page<Content> searchOnlyApproveContent(String title, PageRequest page); // only vi
     Page<Content> getOnlyApproveContentBySource(String source,String type, PageRequest page); // only vi
