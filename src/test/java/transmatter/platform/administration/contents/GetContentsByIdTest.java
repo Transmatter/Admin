@@ -20,11 +20,11 @@ public class GetContentsByIdTest {
     @Test
     @DisplayName("Get Contents Normal Case")
     void getContentByIdNormalCase(){
-//        Content content = contentService.getContent("62ac4bae05c05d8fbd5a4908");
-//        assertEquals(content.getTitle(), "สภาดิจิทัลฯ ขอบคุณรัฐบาลออกพ.ร.ฎ.เว้น Capital Gains Tax ดันสตาร์ทอัพไทย");
-//        assertEquals(content.getAuthor(), "ไทยรัฐออนไลน์");
-//        assertEquals(content.getSource(), "ไทยรัฐออนไลน์");
-//        assertEquals(content.getType(), "นโยบาย");
+        Content content = contentService.getContent("62fb4e5b8177f9a0836a28e0");
+        assertEquals(content.getTitle(), "TOA เผยกำไรไตรมาส 2/65 แตะ 473 ล้าน เตรียมปันผล 0.25 บาทต่อหุ้น");
+        assertEquals(content.getAuthor(), "ไทยรัฐออนไลน์");
+        assertEquals(content.getSource(), "ไทยรัฐออนไลน์");
+        assertEquals(content.getCategory(), "การลงทุน");
         assertTrue(true);
     }
 
