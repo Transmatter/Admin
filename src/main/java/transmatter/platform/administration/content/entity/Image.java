@@ -16,4 +16,13 @@ public class Image {
 
     @Builder.Default
     String alt = "";
+
+    @Builder.Default
+    ImageStatus verifyStatus = ImageStatus.NA;
+
+    @Nullable
+    String verifiedBy;
+
+    @Nullable
+    String verifiedDate;
 }
