@@ -66,7 +66,7 @@ public class ContentServiceImpl implements ContentService {
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         String date = formatter.format(new Date());
         for(int i=0;i<content.getImages().size();i++){
-            if(ImageText.get(i).getAlt() != null){
+            if(ImageText.get(i).getAlt() != null && !ImageText.get(i).getAlt().equals("")){
                 content.getImages().get(i).setAlt(ImageText.get(i).getAlt());
                 content.getImages().get(i).setVerifyStatus(ImageStatus.COMPLETE);
                 content.getImages().get(i).setVerifiedBy("Sahachan Tippimwong");
