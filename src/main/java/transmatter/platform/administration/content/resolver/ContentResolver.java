@@ -71,6 +71,10 @@ public class ContentResolver implements GraphQLQueryResolver, GraphQLMutationRes
         return contentService.getContentByType(ContentType.valueOf(type),PageRequest.of(filter.getPage()-1,filter.getSize()));
     }
 
+    Page<Content> searchContentSpecInSrcAndCate(String title, String source, String category, PageFilter filter) {
+        return contentService.searchContentSpecInSrcAndCate(title,source,category,PageRequest.of(filter.getPage()-1,filter.getSize()));
+    }
+
     // ============================ vi ============================
 
     Page<Content> getAllApprovedContent(PageFilter filter) {
@@ -87,5 +91,9 @@ public class ContentResolver implements GraphQLQueryResolver, GraphQLMutationRes
 
     Page<Content> searchOnlyApprovedContent(String title, PageFilter filter) {
         return contentService.searchOnlyApproveContent(title,PageRequest.of(filter.getPage()-1,filter.getSize()));
+    }
+
+    Page<Content> searchOnlyApprovedContentBySource(String source, String category, String title, PageFilter filter) {
+        return contentService.searchApproveContentSpecInSrcAndCate(source,category,title,PageRequest.of(filter.getPage()-1,filter.getSize()));
     }
 }

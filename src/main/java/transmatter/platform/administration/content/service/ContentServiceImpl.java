@@ -119,6 +119,11 @@ public class ContentServiceImpl implements ContentService {
         return contentDao.getContentType(type,page);
     }
 
+    @Override
+    public Page<Content> searchContentSpecInSrcAndCate(String title, String source, String category, PageRequest page) {
+        return contentDao.searchContentSpecInSrcAndCate(title,source,category,page);
+    }
+
     // ================== progress 2 vi part ======================
 
     @Override
@@ -142,6 +147,11 @@ public class ContentServiceImpl implements ContentService {
             return contentDao.getApproveContentBySource(source,page);
         }
         return contentDao.getOnlyApproveContentBySource(source,type,page);
+    }
+
+    @Override
+    public Page<Content> searchApproveContentSpecInSrcAndCate(String title, String source, String category, PageRequest page) {
+        return contentDao.searchApproveContentSpecInSrcAndCate(title,source,category,page);
     }
 
     // ================ progress 2 ======================
