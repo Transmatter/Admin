@@ -1,6 +1,7 @@
 package transmatter.platform.administration.security.dao;
 
 import transmatter.platform.administration.security.entity.Admin;
+import transmatter.platform.administration.security.entity.VerifyStatus;
 import transmatter.platform.administration.security.repository.AuthorityRepository;
 import transmatter.platform.administration.security.repository.AdminRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +22,16 @@ public class AdminDaoImpl implements AdminDao {
     @Override
     public List<Admin> getAllUser() {
         return userRepository.findAll();
+    }
+
+    @Override
+    public List<Admin> getUnverifyAdmin() {
+        return userRepository.findByStatus(VerifyStatus.NOT_VERIFIED);
+    }
+
+    @Override
+    public Page<Admin> getUnverifyAdmin(PageRequest page) {
+        return userRepository.findByStatus(VerifyStatus.NOT_VERIFIED, page);
     }
 
     @Override

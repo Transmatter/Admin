@@ -6,8 +6,13 @@ type Content {
     title : String
     content : String
     type : String
+    category: String
     images : [Image]
     comment : [Comment]
+
+    approveStatus : String
+    approvedDate : String
+    approvedBy : String
 }
 
 type PageContent {
@@ -27,8 +32,16 @@ type Comment {
 type Image {
     url : String
     alt : String
+    verifyStatus : String
+    verifiedBy : String
+    verifiedDate : String
 }
 
 input ImageText {
     alt : String
+}
+
+input ContentInput {
+    title : String
+    content: String
 }

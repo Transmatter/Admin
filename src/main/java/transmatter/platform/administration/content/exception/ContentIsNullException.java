@@ -13,7 +13,7 @@ public class ContentIsNullException extends RuntimeException implements GraphQLE
     String id;
 
     public ContentIsNullException(String id){
-        super("News is null");
+        super("Content is null");
         this.id = id;
     }
 
@@ -31,9 +31,9 @@ public class ContentIsNullException extends RuntimeException implements GraphQLE
     public Map<String, Object> getExtensions() {
         Map<String, Object> extension = new HashMap<>();
 
-        extension.put("error_code", 000);
-        extension.put("message", "News is null");
-        extension.put("displayMessage", "News is null");
+        extension.put("error_code", 300);
+        extension.put("message", "Content is null");
+        extension.put("displayMessage", "Content is null");
         return extension;
     }
 }
