@@ -121,6 +121,9 @@ public class ContentServiceImpl implements ContentService {
 
     @Override
     public Page<Content> searchContentSpecInSrcAndCate(String title, String source, String category, PageRequest page) {
+        if(category.equals("ทั้งหมด")){
+            return contentDao.searchContentSpecInSrc(title,source,page);
+        }
         return contentDao.searchContentSpecInSrcAndCate(title,source,category,page);
     }
 
@@ -151,6 +154,9 @@ public class ContentServiceImpl implements ContentService {
 
     @Override
     public Page<Content> searchApproveContentSpecInSrcAndCate(String title, String source, String category, PageRequest page) {
+        if(category.equals("ทั้งหมด")){
+            return contentDao.searchApproveContentSpecInSrc(title,source,page);
+        }
         return contentDao.searchApproveContentSpecInSrcAndCate(title,source,category,page);
     }
 

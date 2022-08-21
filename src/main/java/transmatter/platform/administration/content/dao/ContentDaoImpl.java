@@ -80,6 +80,11 @@ public class ContentDaoImpl implements ContentDao {
         return contentRepository.findByTitleContainingAndSourceAndCategory(title,source,category,page);
     }
 
+    @Override
+    public Page<Content> searchContentSpecInSrc(String title, String source, PageRequest page) {
+        return contentRepository.findByTitleContainingAndSource(title,source,page);
+    }
+
     // ========================== progress 2 vi part =================================== //
     @Override
     public Page<Content> getAllApproveContent(PageRequest page) {
@@ -104,6 +109,11 @@ public class ContentDaoImpl implements ContentDao {
     @Override
     public Page<Content> searchApproveContentSpecInSrcAndCate(String title, String source, String category, PageRequest page) {
         return contentRepository.findByTitleContainingAndSourceAndCategoryAndApproveStatus(title,source,category,ContentStatus.APPROVE,page);
+    }
+
+    @Override
+    public Page<Content> searchApproveContentSpecInSrc(String title, String source, PageRequest page) {
+        return contentRepository.findByTitleContainingAndSourceAndApproveStatus(title,source,ContentStatus.APPROVE,page);
     }
 
     @Override
