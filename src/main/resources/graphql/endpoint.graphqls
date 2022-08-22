@@ -16,12 +16,14 @@ type Query {
     getAllEmptyAltNews(filter: PageFilter): PageContent
     getContentByDate(start:String, end: String,filter:PageFilter): PageContent
     getContentByType(type:String,filter:PageFilter): PageContent
+    searchContentSpecInSrcAndCate(source:String, category:String,title:String,filter:PageFilter): PageContent
 
     # vi feature progress 2
     getAllApprovedContent(filter: PageFilter): PageContent
     getAllApprovedContentByDate(start: String, end: String, filter: PageFilter): PageContent
     searchOnlyApprovedContent(title: String, filter: PageFilter): PageContent
     getOnlyApprovedContentBySource(source: String,category: String, filter: PageFilter): PageContent
+    searchOnlyApprovedContentSpecInSrcAndCate(source: String, category: String, title: String, filter: PageFilter): PageContent
 }
 
 type Mutation {

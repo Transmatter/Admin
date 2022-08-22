@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 
+import java.io.Serial;
 import java.io.Serializable;
 import java.util.Date;
 
@@ -15,21 +16,13 @@ import java.util.Date;
 @AllArgsConstructor
 public class JwtAuthenticationRequest implements Serializable {
 
+    @Serial
     private static final long serialVersionUID = -8445943548965154778L;
 
-    private String personalID;
     private String firstname;
     private String lastname;
     private String email;
-    private String lineID;
-    private Date birthday;
     private String phoneNo;
-    private String imageProfile;
     private String username;
     private String password;
-    private String promptPay;
-
-    public JwtAuthenticationRequest() {
-        super();
-    }
 }
