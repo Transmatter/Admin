@@ -23,7 +23,7 @@ type Query {
     getAllApprovedContentByDate(start: String, end: String, filter: PageFilter): PageContent
     searchOnlyApprovedContent(title: String, filter: PageFilter): PageContent
     getOnlyApprovedContentBySource(source: String,category: String, filter: PageFilter): PageContent
-    searchOnlyApprovedContentBySource(source: String, category: String, title: String, filter: PageFilter): PageContent
+    searchOnlyApprovedContentSpecInSrcAndCate(source: String, category: String, title: String, filter: PageFilter): PageContent
 }
 
 type Mutation {

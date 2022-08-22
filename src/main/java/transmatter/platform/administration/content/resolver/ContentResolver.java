@@ -4,6 +4,7 @@ import graphql.kickstart.servlet.context.GraphQLServletContext;
 import graphql.kickstart.tools.GraphQLMutationResolver;
 import graphql.kickstart.tools.GraphQLQueryResolver;
 import graphql.schema.DataFetchingEnvironment;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -71,7 +72,7 @@ public class ContentResolver implements GraphQLQueryResolver, GraphQLMutationRes
         return contentService.getContentByType(ContentType.valueOf(type),PageRequest.of(filter.getPage()-1,filter.getSize()));
     }
 
-    Page<Content> searchContentSpecInSrcAndCate(String title, String source, String category, PageFilter filter) {
+    Page<Content> searchContentSpecInSrcAndCate(String source,String category,String title, PageFilter filter) {
         return contentService.searchContentSpecInSrcAndCate(title,source,category,PageRequest.of(filter.getPage()-1,filter.getSize()));
     }
 
@@ -93,7 +94,7 @@ public class ContentResolver implements GraphQLQueryResolver, GraphQLMutationRes
         return contentService.searchOnlyApproveContent(title,PageRequest.of(filter.getPage()-1,filter.getSize()));
     }
 
-    Page<Content> searchOnlyApprovedContentBySource(String source, String category, String title, PageFilter filter) {
-        return contentService.searchApproveContentSpecInSrcAndCate(source,category,title,PageRequest.of(filter.getPage()-1,filter.getSize()));
+    Page<Content> searchOnlyApprovedContentSpecInSrcAndCate(String source, String category, String title, PageFilter filter) {
+        return contentService.searchApproveContentSpecInSrcAndCate(title,source,category,PageRequest.of(filter.getPage()-1,filter.getSize()));
     }
 }
