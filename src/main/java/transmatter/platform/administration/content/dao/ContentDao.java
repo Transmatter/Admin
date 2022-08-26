@@ -22,10 +22,14 @@ public interface ContentDao {
     Page<Content> getAllEmptyAltNews(PageRequest page); // only admin
     Page<Content> getContentByDate(String start, String end, PageRequest page); // only admin
     Page<Content> getContentType(ContentType type, PageRequest page); // only admin
+    Page<Content> searchContentSpecInSrcAndCate(String title, String source, String category, PageRequest page); // only admin
+    Page<Content> searchContentSpecInSrc(String title, String source, PageRequest page); // only admin
 
     Page<Content> getAllApproveContent(PageRequest page); // only vi
     Page<Content> getApproveContentBySource(String source, PageRequest page); // only vi
     Page<Content> getApproveContentByDate(String start, String end, PageRequest page); // only vi
     Page<Content> searchOnlyApproveContent(String title, PageRequest page); // only vi
     Page<Content> getOnlyApproveContentBySource(String source,String type, PageRequest page); // only vi
+    Page<Content> searchApproveContentSpecInSrcAndCate(String title, String source, String category, PageRequest page); // only vi
+    Page<Content> searchApproveContentSpecInSrc(String title, String source, PageRequest page); // only vi
 }
