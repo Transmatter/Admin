@@ -49,4 +49,7 @@ graphql:
     enabled: true
     mapping: /graphql
     corsEnabled: false
-
+server:
+  error:
+    include-message: always
+  port: 3917
