@@ -21,11 +21,10 @@ public class SearchContentTest {
     @Test
     @DisplayName("Searching Content Normal Case")
     void searchNewsNormalCase(){
-//        Page<Content> contents = contentService.searchNews("เงิน", PageRequest.of(0,5));
-//        assertEquals(contents.getTotalElements(), 9);
-//        assertEquals(contents.getTotalPages(), 2);
-//        assertEquals(contents.getContent().size(), 5);
-        assertEquals(true,true);
+        Page<Content> contents = contentService.searchNews("เงิน", PageRequest.of(0,5));
+        assertEquals(contents.getTotalElements(), 3);
+        assertEquals(contents.getTotalPages(), 1);
+        assertEquals(contents.getContent().size(), 3);
     }
 
     @Test
@@ -42,4 +41,15 @@ public class SearchContentTest {
     void searchNewsButTitleIsNotMatchAnyNewsInRepository(){
         assertNull(null);
     }
+
+    @Test
+    @DisplayName("Searching Approved Content")
+    void searchApprovedNews(){
+        Page<Content> contents = contentService.searchOnlyApproveContent("ไทย", PageRequest.of(0,5));
+        assertEquals(contents.getTotalElements(), 2);
+        assertEquals(contents.getTotalPages(), 1);
+        assertEquals(contents.getContent().size(), 2);
+    }
+
+
 }

@@ -25,7 +25,6 @@ public class GetContentsByIdTest {
         assertEquals(content.getAuthor(), "ไทยรัฐออนไลน์");
         assertEquals(content.getSource(), "ไทยรัฐออนไลน์");
         assertEquals(content.getCategory(), "การลงทุน");
-        assertTrue(true);
     }
 
     @Test

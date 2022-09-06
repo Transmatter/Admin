@@ -22,9 +22,8 @@ public class GetAllContentTest {
     @DisplayName("Get All Contents as pagination Normal Case")
     void getAllContentsNormalCase(){
         Page<Content> contents = contentService.getAllContents(PageRequest.of(1,10));
-        assertEquals(contents.getTotalElements(), 15);
-        assertEquals(contents.getTotalPages(), 2);
-        assertEquals(contents.getContent().size(), 5);
-//        assertTrue(true);
+        assertEquals(contents.getTotalElements(), 39);
+        assertEquals(contents.getTotalPages(), 4);
+        assertEquals(contents.getContent().size(), 10);
     }
 }
