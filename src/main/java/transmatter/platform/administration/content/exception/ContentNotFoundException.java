@@ -32,8 +32,8 @@ public class ContentNotFoundException extends RuntimeException implements GraphQ
         Map<String, Object> extension = new HashMap<>();
 
         extension.put("error_code", 320);
-        extension.put("message", String.format("The News id: %s that you looking for, does not exists",id));
-        extension.put("displayMessage", String.format("News id: %s does not exist",id));
+        extension.put("message", String.format("The Content id: %s that you looking for, does not exists",id));
+        extension.put("displayMessage", String.format("Content id: %s does not exist",id));
         return extension;
     }
 }
