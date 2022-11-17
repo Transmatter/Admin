@@ -5,10 +5,10 @@ spring:
     active:
       - db
   datasource:
-    url: jdbc:mysql://52.230.104.188:3306/transmatter_admin?createDatabaseIfNotExist=true&autoReconnect=true&characterEncoding=UTF-8&allowMultiQueries=true&useSSL=false&useUnicode=true&characterEncoding=UTF-8
-    driver-class-name: com.mysql.cj.jdbc.Driver
-    username: root
-    password: 1590
+    url: jdbc:postgresql://db.oviyqdunqfzeqakjynkh.supabase.co:5432/postgres?createDatabaseIfNotExist=true&autoReconnect=true&characterEncoding=UTF-8&allowMultiQueries=true&useSSL=false&useUnicode=true&characterEncoding=UTF-8
+    username: postgres
+    password: Tmat@501739
+    driver-class-name: org.postgresql.Driver
   jpa:
     hibernate:
       ddl-auto: create
