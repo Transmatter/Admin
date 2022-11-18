@@ -20,7 +20,7 @@ public class AdministrationApplication {
             @Override
             public void addCorsMappings(CorsRegistry registry){
                 registry.addMapping("/**")
-                        .allowedOrigins("http://localhost:3300","http://52.230.104.188")
+                        .allowedOrigins("http://localhost:3300","http://52.230.104.188","https://transmatter-platform-demo.web.app")
                         .exposedHeaders("x-total-count");
             }
         };
